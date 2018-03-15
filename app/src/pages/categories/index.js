@@ -3,11 +3,14 @@ import { connect } from 'react-redux'
 import { map } from 'ramda'
 import List from 'material-ui/List'
 import CategoryListItem from '../../components/CategoryListItem'
+import withDrawer from '../../components/Drawer'
+import MenuAppBar from '../../components/MenuAppBar'
 
 const Categories = props => {
   // props.categories
   return (
     <div style={{ marginTop: '56px' }}>
+      <MenuAppBar title="Categories" />
       <List>
         {map(c => <CategoryListItem category={c} />, props.categories)}
       </List>
@@ -23,4 +26,4 @@ function mapStateToProps(state) {
 
 const connector = connect(mapStateToProps)
 
-export default connector(Categories)
+export default withDrawer(connector(Categories))
