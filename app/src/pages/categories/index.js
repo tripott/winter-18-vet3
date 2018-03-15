@@ -7,7 +7,7 @@ import CategoryListItem from '../../components/CategoryListItem'
 const Categories = props => {
   // props.categories
   return (
-    <div>
+    <div style={{ marginTop: '56px' }}>
       <List>
         {map(c => <CategoryListItem category={c} />, props.categories)}
       </List>

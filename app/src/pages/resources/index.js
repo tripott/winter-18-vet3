@@ -4,9 +4,12 @@ import { map } from 'ramda'
 import ResourceListItem from '../../components/ResourceListItem'
 import List from 'material-ui/List'
 
+import MenuAppBar from '../../components/MenuAppBar'
+
 const Resources = props => {
   return (
-    <div>
+    <div style={{ marginTop: '56px' }}>
+      <MenuAppBar title="Resources" />
       <List>
         {map(r => <ResourceListItem resource={r} />, props.resources)}
       </List>
