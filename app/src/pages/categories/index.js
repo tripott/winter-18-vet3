@@ -19,6 +19,7 @@ const Categories = props => {
 }
 
 function mapStateToProps(state) {
+  console.log('state in index.js', state)
   return {
     categories: state.categories
   }
