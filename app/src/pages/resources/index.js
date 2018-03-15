@@ -2,14 +2,14 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { map } from 'ramda'
 import ResourceListItem from '../../components/ResourceListItem'
+import List from 'material-ui/List'
 
 const Resources = props => {
   return (
     <div>
-      <h1>Resources</h1>
-      <div>
-        <ol>{map(r => <ResourceListItem resource={r} />, props.resources)}</ol>
-      </div>
+      <List>
+        {map(r => <ResourceListItem resource={r} />, props.resources)}
+      </List>
     </div>
   )
 }

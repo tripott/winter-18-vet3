@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import Home from './pages/home'
 import Resources from './pages/resources'
+import Categories from './pages/categories'
 
 class App extends Component {
   render() {
@@ -14,6 +15,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/resources" component={Resources} />
+            <Route exact path="/categories" component={Categories} />
           </Switch>
         </div>
       </BrowserRouter>
