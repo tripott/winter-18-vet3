@@ -14,8 +14,13 @@ const allDocs = options => {
   return db.allDocs(options).then(result => pluck('doc', result.rows))
 }
 
+const getDoc = resourceId => {
+  return db.get(resourceId)
+}
+
 const dalHelper = {
-  allDocs
+  allDocs,
+  getDoc
 }
 
 module.exports = dalHelper
