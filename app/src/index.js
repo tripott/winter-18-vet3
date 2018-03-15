@@ -5,7 +5,7 @@ import App from './App'
 import registerServiceWorker from './registerServiceWorker'
 import store from './store'
 import { Provider } from 'react-redux'
-import { getResources } from './action-creators/resources'
+import { getResource, getResources } from './action-creators/resources'
 import { getCategories } from './action-creators/categories'
 import 'typeface-roboto'
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles'
@@ -35,3 +35,4 @@ registerServiceWorker()
 
 store.dispatch(getResources)
 store.dispatch(getCategories)
+store.dispatch(getResource)
