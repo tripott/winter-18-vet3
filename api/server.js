@@ -5,6 +5,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const PORT = process.env.PORT || 5000
 const resources = require('./routes/resources')
+const categories = require('./routes/categories')
 
 app.use(bodyParser.json())
 app.use(cors({ credentials: true }))
@@ -14,5 +15,6 @@ app.get('/', (req, res) => {
 })
 
 resources(app)
+categories(app)
 
 app.listen(PORT, () => console.log('API UP!! on ', PORT))
