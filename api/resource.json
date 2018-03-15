@@ -1,0 +1,32 @@
+{
+  "_id": "resource_one80-place",
+  "type": "resource",
+  "categoryId": "category_basic-needs-assistance",
+  "name": "One80 Place",
+  "formalName": "One80 Place",
+  "shortDesc": "Homeless service provider with daily hot meals.",
+  "purpose":
+    "One80 Place is the largest homeless service provider in South Carolina, serving a hot meal daily in the Charleston-area homeless shelter and the Palmetto House shelter in Summerville, SC. One80 Place staff are certified to oversee comprehensive case management for all clients, including military veterans, civilians, individuals and families.",
+  "website": "www.one80place.org",
+  "primaryPhone": "843-723-9477",
+  "contacts": [
+    {
+      "name": "Selena Wilson",
+      "office": null,
+      "title": "Chief Program Officer",
+      "phone": "843-723-9477",
+      "email": "swilson@one80place.org",
+      "isPrimary": true
+    }
+  ],
+  "addresses": [
+    {
+      "location": "Charleston Homeless Shelter",
+      "street": "35 Walnut Street",
+      "city": "Charleston",
+      "state": "SC",
+      "zip": "29401",
+      "isPrimary": true
+    }
+  ]
+}
