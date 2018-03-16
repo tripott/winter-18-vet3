@@ -4,7 +4,7 @@ import List, { ListItem, ListItemAvatar, ListItemText } from 'material-ui/List'
 import Avatar from 'material-ui/Avatar'
 import MenuAppBar from '../../components/MenuAppBar'
 import { getCategory } from '../../action-creators/categories'
-
+import CategoryListItem from '../../components/CategoryListItem'
 class Category extends React.Component {
   componentDidMount() {
     console.log('PROPS asdfasdfsadf', this.props)
@@ -17,11 +17,10 @@ class Category extends React.Component {
     const props = this.props
     console.log('PROPS', props)
     return (
-      <div>
-        <MenuAppBar />
-        <div>
-          <ListItem />
-        </div>
+      <div style={{ marginTop: '56px' }}>
+        <MenuAppBar title="Category" />
+        <CategoryListItem category={props.category} />
+        <p>{props.category.desc}</p>
       </div>
     )
   }
