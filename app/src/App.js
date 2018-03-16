@@ -4,6 +4,7 @@ import './App.css'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Category from './pages/categories/show'
 import Home from './pages/home'
+import Resource from './pages/resource'
 import Resources from './pages/resources'
 import Categories from './pages/categories'
 
@@ -15,6 +16,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/resources" component={Resources} />
+            <Route path="/resources/:id" component={Resource} />
             <Route exact path="/categories" component={Categories} />
             <Route path="/categories/:id" component={Category} />
           </Switch>

@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch'
-import { SET_RESOURCES } from '../constants'
+import { SET_RESOURCES, GET_RESOURCE } from '../constants'
 const url = 'http://localhost:5000'
 
 /*
@@ -12,4 +12,9 @@ getResources()
 export const getResources = async (dispatch, getState) => {
   const resources = await fetch(`${url}/resources`).then(res => res.json())
   dispatch({ type: SET_RESOURCES, payload: resources })
+}
+
+export const getResource = id => async (dispatch, getState) => {
+  const resource = await fetch(`${url}/resources/${id}`).then(res => res.json())
+  dispatch({ type: GET_RESOURCE, payload: resource })
 }
