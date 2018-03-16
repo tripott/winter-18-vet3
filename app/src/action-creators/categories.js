@@ -15,6 +15,7 @@ export const getCategories = async (dispatch, getState) => {
 }
 
 export const getCategory = id => async (dispatch, getState) => {
+  dispatch({ type: CURRENT_CAT, payload: {} })
   const category = await fetch(`${url}/categories/${id}`).then(res =>
     res.json()
   )

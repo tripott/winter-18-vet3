@@ -7,11 +7,10 @@ import { getCategory } from '../../action-creators/categories'
 import CategoryListItem from '../../components/CategoryListItem'
 class Category extends React.Component {
   componentDidMount() {
-    console.log('PROPS asdfasdfsadf', this.props)
     const id = this.props.match.params.id
-    console.log('ID', id)
     this.props.getCategory(id)
   }
+
   render() {
     console.log('*** RENDER ***')
     const props = this.props

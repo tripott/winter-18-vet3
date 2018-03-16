@@ -14,17 +14,8 @@ const Categories = props => {
       <MenuAppBar title="Categories" />
       <List>
         {map(
-          c => (
-            <Link
-              to={c._id}
-              style={{
-                textDecoration: 'none',
-                color: 'black'
-              }}
-            >
-              <CategoryListItem category={c} />
-            </Link>
-          ),
+          c => <CategoryListItem category={c} />,
+
           props.categories
         )}
       </List>
