@@ -5,6 +5,7 @@ import List from 'material-ui/List'
 import CategoryListItem from '../../components/CategoryListItem'
 import withDrawer from '../../components/Drawer'
 import MenuAppBar from '../../components/MenuAppBar'
+import { Link } from 'react-router-dom'
 
 const Categories = props => {
   // props.categories
@@ -12,7 +13,20 @@ const Categories = props => {
     <div style={{ marginTop: '56px' }}>
       <MenuAppBar title="Categories" />
       <List>
-        {map(c => <CategoryListItem category={c} />, props.categories)}
+        {map(
+          c => (
+            <Link
+              to={c._id}
+              style={{
+                textDecoration: 'none',
+                color: 'black'
+              }}
+            >
+              <CategoryListItem category={c} />
+            </Link>
+          ),
+          props.categories
+        )}
       </List>
     </div>
   )
