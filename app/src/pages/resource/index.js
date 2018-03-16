@@ -4,19 +4,34 @@ import { map } from 'ramda'
 import ResourceListItem from '../../components/ResourceListItem'
 import List from 'material-ui/List'
 import MenuAppBar from '../../components/MenuAppBar'
+import { getResource } from '../../action-creators/resources'
 
-const Resource = props => {
+class Resource extends React.Component {
   // props.toggleDrawer()
-  return (
-    <div>
-      <MenuAppBar title="Resource" />
-      <div style={{ marginTop: '44px' }}>
-        <div>{map(r => <ResourceListItem resource={r} />, props)}</div>
-        <div>{props.purpose}</div>
+  componentDidMount() {
+    const id = this.props.match.params.id
+    this.props.getResource(id)
+  }
+
+  render() {
+    if (this.props.resource._id !== this.props.match.params.id) {
+      return <h1>Loading Resource...</h1>
+    }
+
+    return (
+      <div>
+        <MenuAppBar title="Resource" />
+        <div style={{ marginTop: '44px' }}>
+          <ResourceListItem resource={this.props.resource} />
+          <div>{this.props.resource.purpose}</div>
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
+
+//<ResourceListItem resource={this.props.resource} />
+//<ResourceListItem name={props.name} shortDesc={props.shortDesc} />
 
 const mapStateToProps = state => {
   console.log('What IS state?', state)
@@ -25,6 +40,10 @@ const mapStateToProps = state => {
   }
 }
 
-const connector = connect(mapStateToProps)
+const mapActionsToProps = dispatch => {
+  return { getResource: id => dispatch(getResource(id)) }
+}
+
+const connector = connect(mapStateToProps, mapActionsToProps)
 
 export default connector(Resource)

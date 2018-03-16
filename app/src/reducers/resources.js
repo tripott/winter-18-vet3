@@ -1,8 +1,8 @@
 import { SET_RESOURCES, GET_RESOURCE } from '../constants'
 
 /*
-A reducer named "resources" would be responsible 
-for managing the list of resources. 
+A reducer named "resources" would be responsible
+for managing the list of resources.
 */
 
 export const resources = (state = [], action) => {
