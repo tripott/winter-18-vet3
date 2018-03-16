@@ -15,6 +15,7 @@ import {
 } from 'ramda'
 
 const ResourceListItem = props => {
+  console.log('proooops', props)
   const { name, shortDesc } = props.resource
 
   const removeArticles = arrWords => {
