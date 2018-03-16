@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import logo from './logo.svg'
 import './App.css'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Category from './pages/categories/show'
 import Home from './pages/home'
-import Resource from './pages/resource'
+import Resource from './pages/resources/show'
 import Resources from './pages/resources'
 import Categories from './pages/categories'
 

@@ -15,6 +15,7 @@ export const getResources = async (dispatch, getState) => {
 }
 
 export const getResource = id => async (dispatch, getState) => {
+  dispatch({ type: GET_RESOURCE, payload: {} })
   const resource = await fetch(`${url}/resources/${id}`).then(res => res.json())
   dispatch({ type: GET_RESOURCE, payload: resource })
 }

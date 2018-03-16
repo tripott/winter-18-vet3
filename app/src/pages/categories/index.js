@@ -5,7 +5,6 @@ import List from 'material-ui/List'
 import CategoryListItem from '../../components/CategoryListItem'
 import withDrawer from '../../components/Drawer'
 import MenuAppBar from '../../components/MenuAppBar'
-import { Link } from 'react-router-dom'
 
 const Categories = props => {
   // props.categories
@@ -24,7 +23,6 @@ const Categories = props => {
 }
 
 function mapStateToProps(state) {
-  console.log('state in index.js', state)
   return {
     categories: state.categories
   }

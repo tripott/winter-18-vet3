@@ -12,9 +12,6 @@ const db = new PouchDB(`${process.env.COUCH_URL}${process.env.COUCH_DBNAME}`)
 const allDocs = options => {
   return db.allDocs(options).then(result => pluck('doc', result.rows))
 }
-const getDoc = resourceId => {
-  return db.get(resourceId)
-}
 
 const getDoc = id => db.get(id)
 
