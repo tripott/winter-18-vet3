@@ -14,10 +14,10 @@ class Category extends React.Component {
   render() {
     console.log('*** RENDER ***')
     const props = this.props
-    console.log('PROPS', props)
+    console.log('CATEGORY SHOW PROPS', props)
     return (
       <div style={{ marginTop: '56px' }}>
-        <MenuAppBar title="Category" />
+        <MenuAppBar {...this.props} title="Category" showBackArrow={true} />
         <CategoryListItem category={props.category} />
         <p>{props.category.desc}</p>
       </div>
