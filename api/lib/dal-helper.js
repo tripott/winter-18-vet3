@@ -16,6 +16,8 @@ const getDoc = resourceId => {
   return db.get(resourceId)
 }
 
+const getDoc = id => db.get(id)
+
 const dalHelper = {
   allDocs,
   getDoc

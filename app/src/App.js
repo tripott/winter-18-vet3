@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import logo from './logo.svg'
 import './App.css'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-
+import Category from './pages/categories/show'
 import Home from './pages/home'
 import Resource from './pages/resource'
 import Resources from './pages/resources'
@@ -18,6 +18,7 @@ class App extends Component {
             <Route exact path="/resources" component={Resources} />
             <Route path="/resources/:id" component={Resource} />
             <Route exact path="/categories" component={Categories} />
+            <Route path="/categories/:id" component={Category} />
           </Switch>
         </div>
       </BrowserRouter>
