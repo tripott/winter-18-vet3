@@ -1,3 +1,4 @@
+const { getDoc } = require('../lib/dal-helper')
 const { getCategories } = require('../dal')
 
 module.exports = app => {
@@ -7,5 +8,8 @@ module.exports = app => {
       startkey: 'category_',
       endkey: 'category_\ufff0'
     }).then(categories => res.send(categories))
+  })
+  app.get('/categories/:id', (req, res) => {
+    getDoc(req.params.id).then(doc => res.send(doc))
   })
 }
