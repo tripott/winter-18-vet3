@@ -11,7 +11,7 @@ const Resource = props => {
     <div>
       <MenuAppBar title="Resource" />
       <div style={{ marginTop: '44px' }}>
-        {map(r => <ResourceListItem resource={r} />, props.resource)}
+        <div>{map(r => <ResourceListItem resource={r} />, props)}</div>
         <div>{props.purpose}</div>
       </div>
     </div>
