@@ -5,6 +5,7 @@ import Avatar from 'material-ui/Avatar'
 import MenuAppBar from '../../components/MenuAppBar'
 import { getCategory } from '../../action-creators/categories'
 import CategoryListItem from '../../components/CategoryListItem'
+
 class Category extends React.Component {
   componentDidMount() {
     const id = this.props.match.params.id

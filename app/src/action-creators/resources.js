@@ -5,7 +5,7 @@ const url = 'http://localhost:5000'
 /*
 getResources()
 - use fetch to make a GET to /resources
-- take array of resource documents and turn them into json
+- take array of resource documents and t  urn them into json
 - dispatch an action containing the resources as a payload:
 	dispatch({type: SET_RESOURCES, payload: resources})
 */

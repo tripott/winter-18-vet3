@@ -7,6 +7,7 @@ import Home from './pages/home'
 import Resource from './pages/resource'
 import Resources from './pages/resources'
 import Categories from './pages/categories'
+import NewResource from './pages/resources/new-resource'
 
 class App extends Component {
   render() {
@@ -16,7 +17,8 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/resources" component={Resources} />
-            <Route path="/resources/:id" component={Resource} />
+            <Route exact path="/resources/:id" component={Resource} />
+            <Route exact path="/resources/new" component={NewResource} />
             <Route exact path="/categories" component={Categories} />
             <Route path="/categories/:id" component={Category} />
           </Switch>

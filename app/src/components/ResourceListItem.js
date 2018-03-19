@@ -2,6 +2,7 @@ import React from 'react'
 import { ListItem, ListItemText } from 'material-ui/List'
 import Avatar from 'material-ui/Avatar'
 import Divider from 'material-ui/Divider'
+import { Link } from 'react-router-dom'
 import {
   toLower,
   split,
@@ -36,8 +37,10 @@ const ResourceListItem = props => {
   return (
     <div>
       <ListItem>
-        <Avatar>{avatarLetter}</Avatar>
-        <ListItemText primary={name} secondary={shortDesc} />
+        <Link to={`/resources/${props.resource._id}`}>
+          <Avatar>{avatarLetter}</Avatar>
+          <ListItemText primary={name} secondary={shortDesc} />
+        </Link>
       </ListItem>
       <Divider />
     </div>
