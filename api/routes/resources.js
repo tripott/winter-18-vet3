@@ -1,5 +1,5 @@
-const { getResources, getResource } = require('../dal')
-const pkGen = require('./pkGen')
+const { getResources, getResource, addResource } = require('../dal')
+const pkGen = require('../lib/pkGen')
 
 module.exports = app => {
   app.get('/resources', (req, res) => {
@@ -18,15 +18,9 @@ module.exports = app => {
   })
 
   app.post('/resources', (req, res) => {
-    const newResource = propOr(null, 'body', req)
-    if (newResource) {
-      res.send({
-        id: `resource_${newName}`,
-        name: req.body.name,
-        value: req.body.value
-      })
-    } else {
-      res.status(400).send({ ok: false })
-    }
+    console.log('POST / Resources')
+    addResource(req.body)
+      .then(addedResource => res.status(201).send(addedResource))
+      .catch(err => console.log('Post Resource ERROR', err))
   })
 }

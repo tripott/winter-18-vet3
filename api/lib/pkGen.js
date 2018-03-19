@@ -1,8 +1,9 @@
 const slugify = require('slugify')
-const { compose, toLower } = require('ramda')
+const { toLower } = require('ramda')
 
-const newName = x => {
-  compose(slugify, toLower)(x)
+module.exports = doc => {
+  console.log('DOCS: ', doc)
+  return `${toLower(doc.type)}_${slugify(doc.name.replace(/^a|^the/i, ''), {
+    lower: true
+  })}`
 }
-
-module.exports = newName
