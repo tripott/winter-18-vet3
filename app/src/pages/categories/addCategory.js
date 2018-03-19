@@ -56,25 +56,32 @@ export const AddCategory = props => {
             label="Name"
             className={classes.textField}
             margin="normal"
-            onChange={props.onChange}
+            value={props.category.name}
+            onChange={e => props.onChange('name', e.target.value)}
           />
           <TextField
             id="shortName"
             label="Short Name"
             className={classes.textField}
             margin="normal"
+            value={props.category.shortName}
+            onChange={e => props.onChange('shortName', e.target.value)}
           />
           <TextField
             id="desc"
             label="Description"
             className={classes.textField}
             margin="normal"
+            value={props.category.desc}
+            onChange={e => props.onChange('desc', e.target.value)}
           />
           <TextField
             id="icon"
             label="Icon"
             className={classes.textField}
             margin="normal"
+            value={props.category.icon}
+            onChange={e => props.onChange('icon', e.target.value)}
           />
         </FormControl>
         <Link to="/categories">
@@ -90,7 +97,7 @@ export const AddCategory = props => {
 
 const mapStateToProps = state => {
   return {
-    category: state.category
+    category: state.addCategoryForm
   }
 }
 
