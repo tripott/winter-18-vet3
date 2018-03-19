@@ -10,8 +10,7 @@ import { TOGGLE_DRAWER } from '../constants'
 import { Drawer } from 'material-ui'
 
 const linkStyle = {
-  textDecoration: 'none',
-  color: 'black'
+  textDecoration: 'none'
 }
 
 const sideList = (

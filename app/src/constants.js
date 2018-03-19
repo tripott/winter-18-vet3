@@ -5,3 +5,5 @@ export const TOGGLE_DRAWER = 'TOGGLE_DRAWER'
 export const GET_RESOURCE = 'GET_RESOURCE'
 
 export const CURRENT_CAT = 'CURRENT_CAT'
+export const CONFIRM_DELETE_RESOURCE = 'CONFIRM_DELETE_RESOURCE'
+export const ERROR = 'ERROR'

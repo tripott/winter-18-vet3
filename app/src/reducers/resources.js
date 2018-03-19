@@ -1,4 +1,9 @@
-import { SET_RESOURCES, GET_RESOURCE } from '../constants'
+import {
+  SET_RESOURCES,
+  GET_RESOURCE,
+  CONFIRM_DELETE_RESOURCE
+} from '../constants'
+import { merge, not } from 'ramda'
 
 /*
 A reducer named "resources" would be responsible
@@ -18,6 +23,8 @@ export const resource = (state = {}, action) => {
   switch (action.type) {
     case GET_RESOURCE:
       return action.payload
+    case CONFIRM_DELETE_RESOURCE:
+      return merge(state, { confirmDelete: not(state.confirmDelete) })
     default:
       return state
   }
