@@ -5,30 +5,30 @@ import List from 'material-ui/List'
 import CategoryListItem from '../../components/CategoryListItem'
 import withDrawer from '../../components/Drawer'
 import MenuAppBar from '../../components/MenuAppBar'
+import { Link } from 'react-router-dom'
 import Button from 'material-ui/Button'
 import AddIcon from 'material-ui-icons/Add'
-import { Link } from 'react-router-dom'
 import { withStyles } from 'material-ui/styles'
 
 const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
     display: 'inlineBlock',
-    position: 'fixed !important',
-    right: '15px !important',
-    bottom: '15px !important',
-    margin: 0,
+    position: 'fixed',
+    right: '15px',
+    bottom: '15px',
     padding: 0
-  }
+  },
+  pageMargin: { marginTop: '56px' }
 })
 
 const Categories = props => {
-  const { classes, categories } = props
+  const { categories, classes } = props
   return (
-    <div style={{ marginTop: '56px' }}>
+    <div className={classes.pageMargin}>
       <MenuAppBar title="Categories" />
       <List>{map(c => <CategoryListItem category={c} />, categories)}</List>
-      <Link to="/resources/new">
+      <Link to="/categories/new">
         <Button
           className={classes.button}
           variant="fab"
