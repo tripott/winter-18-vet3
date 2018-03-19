@@ -7,7 +7,6 @@ import withDrawer from '../../components/Drawer'
 import MenuAppBar from '../../components/MenuAppBar'
 
 const Resources = props => {
-  // props.toggleDrawer()
   return (
     <div>
       <MenuAppBar title="Resources" />
@@ -21,7 +20,6 @@ const Resources = props => {
 }
 
 const mapStateToProps = state => {
-  console.log('What IS state?', state)
   return {
     resources: state.resources
   }
