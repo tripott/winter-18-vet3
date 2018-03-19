@@ -12,4 +12,7 @@ module.exports = app => {
   app.get('/categories/:id', (req, res) => {
     getDoc(req.params.id).then(doc => res.send(doc))
   })
+  app.post('/categories', (req, res) => {
+    addDoc(req.body).then(doc => res.send(doc))
+  })
 }

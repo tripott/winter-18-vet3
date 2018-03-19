@@ -14,6 +14,7 @@ const allDocs = options => {
 }
 
 const getDoc = id => db.get(id)
+const addDoc = doc => db.put((doc._id = `${type}_`))
 
 const dalHelper = {
   allDocs,

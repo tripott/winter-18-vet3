@@ -1,5 +1,10 @@
-import { SET_CATEGORIES, CURRENT_CAT, ADD_CATEGORY } from '../constants'
-
+import {
+  SET_CATEGORIES,
+  CURRENT_CAT,
+  ADD_CATEGORY,
+  RESET_ADD_CAT_FORM
+} from '../constants'
+import { merge } from 'ramda'
 export const categories = (state = [], action) => {
   switch (action.type) {
     case SET_CATEGORIES:
@@ -21,7 +26,9 @@ export const category = (state = {}, action) => {
 export const addCategoryForm = (state = {}, action) => {
   switch (action.type) {
     case ADD_CATEGORY:
-      return action.payload
+      return merge(state, action.payload)
+    case RESET_ADD_CAT_FORM:
+      return {}
     default:
       return state
   }

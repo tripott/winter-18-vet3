@@ -1,5 +1,10 @@
 import fetch from 'isomorphic-fetch'
-import { SET_CATEGORIES, CURRENT_CAT } from '../constants'
+import {
+  SET_CATEGORIES,
+  CURRENT_CAT,
+  ADD_CATEGORY,
+  RESET_ADD_CAT_FORM
+} from '../constants'
 const url = 'http://localhost:5000'
 
 /*
@@ -20,4 +25,21 @@ export const getCategory = id => async (dispatch, getState) => {
     res.json()
   )
   dispatch({ type: CURRENT_CAT, payload: category })
+}
+
+export const addCategory = (category, history) => async (
+  dispatch,
+  getState
+) => {
+  const method = 'POST'
+  const headers = { 'Content-Type': 'application/json' }
+  const body = JSON.stringify(category)
+  const result = await fetch(`${url}/categories`)
+    .then(httpResponse => httpResponse.json())
+    .catch(err => {
+      console.log('fetch err', err)
+    })
+  dispatch({ type: ADD_CATEGORY, payload: result })
+  dispatch({ type: RESET_ADD_CAT_FORM })
+  history.push('/categories')
 }

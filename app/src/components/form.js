@@ -5,8 +5,6 @@ import TextField from 'material-ui/TextField'
 import PropTypes from 'prop-types'
 import MenuAppBar from '../../components/MenuAppBar'
 import { FormControl } from 'material-ui/Form'
-import Button from 'material-ui/Button'
-import { Link } from 'react-router-dom'
 /* need to add in each of the following PROPS
 {
   name: '',
@@ -32,11 +30,8 @@ const styles = theme => ({
     width: 200
   }
 })
-/*
-- need back arrow
--
-*/
-export const AddCategory = props => {
+
+export const AddForm = props => {
   const { classes } = props
   return (
     <div style={{ marginTop: '56px' }}>
@@ -46,10 +41,6 @@ export const AddCategory = props => {
           className={classes.container}
           noValidate
           autoComplete="off"
-          cancelUrl="/categories"
-          onChange={props.onChange}
-          onSubmit={e => props.onSubmit(props.history, props.currentCategory)}
-          {...props.currentCategory}
         >
           <TextField
             id="name"
@@ -76,15 +67,7 @@ export const AddCategory = props => {
             margin="normal"
           />
         </FormControl>
-        <Link to="/categories">
-          <Button className={classes.button}>Cancel</Button>
-        </Link>
-        <Button variant="raised" className={classes.button}>
-          Submit
-        </Button>
       </form>
     </div>
   )
 }
-
-export default withStyles(styles)(AddCategory)
