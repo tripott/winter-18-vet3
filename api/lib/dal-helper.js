@@ -14,11 +14,12 @@ const allDocs = options => {
 }
 
 const getDoc = id => db.get(id)
-const addDoc = doc => db.put((doc._id = `${type}_`))
+const addDoc = doc => db.put(doc)
 
 const dalHelper = {
   allDocs,
-  getDoc
+  getDoc,
+  addDoc
 }
 
 module.exports = dalHelper

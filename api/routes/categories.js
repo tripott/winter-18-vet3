@@ -1,5 +1,6 @@
-const { getDoc } = require('../lib/dal-helper')
+const { getDoc, addDoc } = require('../lib/dal-helper')
 const { getCategories } = require('../dal')
+const slugify = require('slugify')
 
 module.exports = app => {
   app.get('/categories', (req, res) => {
@@ -13,6 +14,10 @@ module.exports = app => {
     getDoc(req.params.id).then(doc => res.send(doc))
   })
   app.post('/categories', (req, res) => {
+    req.body.type = 'category'
+    req.body._id = `${req.body.type}_${slugify(req.body.shortName, {
+      lower: true
+    })}`
     addDoc(req.body).then(doc => res.send(doc))
   })
 }

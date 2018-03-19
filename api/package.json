@@ -8,7 +8,8 @@
     "pouchdb-adapter-http": "^6.4.3",
     "pouchdb-core": "^6.4.3",
     "pouchdb-find": "^6.4.3",
-    "ramda": "^0.25.0"
+    "ramda": "^0.25.0",
+    "slugify": "^1.2.9"
   },
   "devDependencies": {
     "nodemon": "^1.17.2"

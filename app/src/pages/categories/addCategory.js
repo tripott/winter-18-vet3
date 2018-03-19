@@ -7,6 +7,8 @@ import MenuAppBar from '../../components/MenuAppBar'
 import { FormControl } from 'material-ui/Form'
 import Button from 'material-ui/Button'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { changeCategory } from '../../action-creators/categories'
 /* need to add in each of the following PROPS
 {
   name: '',
@@ -46,9 +48,7 @@ export const AddCategory = props => {
           className={classes.container}
           noValidate
           autoComplete="off"
-          cancelUrl="/categories"
-          onChange={props.onChange}
-          onSubmit={e => props.onSubmit(props.history, props.currentCategory)}
+          // onSubmit={e => props.onSubmit(props.history, props.currentCategory)}
           {...props.currentCategory}
         >
           <TextField
@@ -56,6 +56,7 @@ export const AddCategory = props => {
             label="Name"
             className={classes.textField}
             margin="normal"
+            onChange={props.onChange}
           />
           <TextField
             id="shortName"
@@ -87,4 +88,18 @@ export const AddCategory = props => {
   )
 }
 
-export default withStyles(styles)(AddCategory)
+const mapStateToProps = state => {
+  return {
+    category: state.category
+  }
+}
+
+const mapActionsToProps = dispatch => {
+  return {
+    onChange: (field, value) => dispatch(changeCategory(field, value))
+  }
+}
+
+const connector = connect(mapStateToProps, mapActionsToProps)
+
+export default connector(withStyles(styles)(AddCategory))

@@ -2,8 +2,9 @@ import fetch from 'isomorphic-fetch'
 import {
   SET_CATEGORIES,
   CURRENT_CAT,
-  ADD_CATEGORY,
-  RESET_ADD_CAT_FORM
+  CHANGE_CURRENT_CATEGORY,
+  RESET_ADD_CAT_FORM,
+  ADD_CATEGORY
 } from '../constants'
 const url = 'http://localhost:5000'
 
@@ -39,7 +40,11 @@ export const addCategory = (category, history) => async (
     .catch(err => {
       console.log('fetch err', err)
     })
-  dispatch({ type: ADD_CATEGORY, payload: result })
+  dispatch(getCategories)
   dispatch({ type: RESET_ADD_CAT_FORM })
   history.push('/categories')
+}
+
+export const changeCategory = (field, value) => (dispatch, getState) => {
+  dispatch({ type: CHANGE_CURRENT_CATEGORY, payload: { [field]: value } })
 }
