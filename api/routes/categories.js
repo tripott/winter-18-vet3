@@ -14,6 +14,7 @@ module.exports = app => {
     getDoc(req.params.id).then(doc => res.send(doc))
   })
   app.post('/categories', (req, res) => {
+    console.log('request api post/categories...we made it!')
     req.body.type = 'category'
     req.body._id = `${req.body.type}_${slugify(req.body.shortName, {
       lower: true

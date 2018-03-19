@@ -8,7 +8,7 @@ import { FormControl } from 'material-ui/Form'
 import Button from 'material-ui/Button'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { changeCategory } from '../../action-creators/categories'
+import { changeCategory, addCategory } from '../../action-creators/categories'
 /* need to add in each of the following PROPS
 {
   name: '',
@@ -43,7 +43,7 @@ export const AddCategory = props => {
   return (
     <div style={{ marginTop: '56px' }}>
       <MenuAppBar title="Add a Category" showBackArrow={true} {...props} />
-      <form>
+      <form onSubmit={props.onSubmit(props.history, props.category)}>
         <FormControl
           className={classes.container}
           noValidate
@@ -83,13 +83,11 @@ export const AddCategory = props => {
             value={props.category.icon}
             onChange={e => props.onChange('icon', e.target.value)}
           />
+          <Link to="/categories">
+            <Button className={classes.button}>Cancel</Button>
+          </Link>
+          <button>Submit</button>
         </FormControl>
-        <Link to="/categories">
-          <Button className={classes.button}>Cancel</Button>
-        </Link>
-        <Button variant="raised" className={classes.button}>
-          Submit
-        </Button>
       </form>
     </div>
   )
@@ -103,7 +101,11 @@ const mapStateToProps = state => {
 
 const mapActionsToProps = dispatch => {
   return {
-    onChange: (field, value) => dispatch(changeCategory(field, value))
+    onChange: (field, value) => dispatch(changeCategory(field, value)),
+    onSubmit: (history, category) => e => {
+      e.preventDefault()
+      dispatch(addCategory(category, history))
+    }
   }
 }
 

@@ -32,10 +32,11 @@ export const addCategory = (category, history) => async (
   dispatch,
   getState
 ) => {
+  console.log('inside action creator')
   const method = 'POST'
   const headers = { 'Content-Type': 'application/json' }
   const body = JSON.stringify(category)
-  const result = await fetch(`${url}/categories`)
+  const result = await fetch(`${url}/categories`, { method, headers, body })
     .then(httpResponse => httpResponse.json())
     .catch(err => {
       console.log('fetch err', err)
