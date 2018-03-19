@@ -17,8 +17,12 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/resources" component={Resources} />
+            <Route
+              exact
+              path="/resources/new"
+              render={props => <NewResource {...props} />}
+            />
             <Route exact path="/resources/:id" component={Resource} />
-            <Route exact path="/resources/new" component={NewResource} />
             <Route exact path="/categories" component={Categories} />
             <Route path="/categories/:id" component={Category} />
           </Switch>
