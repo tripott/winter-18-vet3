@@ -47,7 +47,17 @@ const styles = theme => ({
 */
 export const AddCategory = props => {
   const { classes } = props
-  const icons = [{ value: 'call end' }, { value: 'pets' }, { value: 'email' }]
+  const icons = [
+    { value: 'call end' },
+    { value: 'pets' },
+    { value: 'email' },
+    { value: 'child_care' },
+    { value: 'accessibility' },
+    { value: 'build' },
+    { value: 'shopping_cart' },
+    { value: 'explore' },
+    { value: 'attach_money' }
+  ]
   return (
     <div style={{ marginTop: '56px' }}>
       <MenuAppBar title="Add a Category" showBackArrow={true} {...props} />
@@ -117,7 +127,7 @@ export const AddCategory = props => {
         <Button
           variant="raised"
           component="span"
-          // color="primary"
+          color="primary"
           className={classes.button}
           onClick={props.onSubmit(props.history, props.category)}
         >
