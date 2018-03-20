@@ -1,12 +1,10 @@
 import React from 'react'
 import { withStyles } from 'material-ui/styles'
-import MenuItem from 'material-ui/Menu/MenuItem'
 import TextField from 'material-ui/TextField'
-import PropTypes from 'prop-types'
 import MenuAppBar from '../../components/MenuAppBar'
+import MenuItem from 'material-ui/Menu/MenuItem'
 import { FormControl } from 'material-ui/Form'
 import Button from 'material-ui/Button'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import {
   changeCategory,
@@ -50,10 +48,19 @@ const styles = theme => ({
 export const AddCategory = props => {
   const { classes } = props
   const icons = [
-    { value: 'call_end' },
+    { value: 'call end' },
     { value: 'pets' },
     { value: 'email' },
-    { value: 'child_care' }
+    { value: 'child_care' },
+    { value: 'accessibility' },
+    { value: 'build' },
+    { value: 'shopping_cart' },
+    { value: 'explore' },
+    { value: 'attach_money' },
+    { value: 'restaurant' },
+    { value: 'person_pin' },
+    { value: 'drive_eta' },
+    { value: 'wc' }
   ]
   return (
     <div style={{ marginTop: '56px' }}>
@@ -103,16 +110,16 @@ export const AddCategory = props => {
             select
             label="Select"
             className={classes.textField}
-            defaultValue="hello"
-            value={props.category.icon || ''}
+            margin="normal"
             onChange={e => props.onChange('icon', e.target.value)}
+            value={props.category.icon || ''}
+            ///
             SelectProps={{
               MenuProps: {
                 className: classes.menu
               }
             }}
-            helperText="Please select your currency"
-            margin="normal"
+            helperText="Please select an icon"
           >
             {icons.map(option => (
               <MenuItem key={option.value} value={option.value}>
@@ -124,16 +131,15 @@ export const AddCategory = props => {
         <Button
           variant="raised"
           component="span"
-          // color="primary"
+          color="primary"
           className={classes.button}
           onClick={props.onSubmit(props.history, props.category)}
         >
           Submit
         </Button>
-
         <Button
-          onClick={props.cancel(props.history)}
           className={classes.button}
+          onClick={props.cancel(props.history)}
         >
           Cancel
         </Button>
