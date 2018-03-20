@@ -68,12 +68,12 @@ export const AddCategory = props => {
             onChange={e => props.onChange('shortName', e.target.value)}
           />
           <TextField
-            id="desc"
+            id="shortDesc"
             label="Description"
             className={classes.textField}
             margin="normal"
             value={props.category.desc}
-            onChange={e => props.onChange('desc', e.target.value)}
+            onChange={e => props.onChange('shortDesc', e.target.value)}
           />
           <TextField
             id="icon"
