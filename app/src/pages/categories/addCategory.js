@@ -33,6 +33,9 @@ const styles = theme => ({
   },
   menu: {
     width: 200
+  },
+  button: {
+    margin: theme.spacing.unit
   }
 })
 /*
@@ -45,7 +48,7 @@ export const AddCategory = props => {
   return (
     <div style={{ marginTop: '56px' }}>
       <MenuAppBar title="Add a Category" showBackArrow={true} {...props} />
-      <form onSubmit={props.onSubmit(props.history, props.category)}>
+      <form>
         <FormControl
           className={classes.container}
           noValidate
@@ -109,15 +112,25 @@ export const AddCategory = props => {
               </option>
             ))}
           </TextField>
-          <Link to="/categories">
-            <Button className={classes.button}>Cancel</Button>
-          </Link>
-          <button>Submit</button>
         </FormControl>
+        <Button
+          variant="raised"
+          component="span"
+          // color="primary"
+          className={classes.button}
+          onClick={props.onSubmit(props.history, props.category)}
+        >
+          Submit
+        </Button>
+        <Link to="/categories">
+          <Button className={classes.button}>Cancel</Button>
+        </Link>
       </form>
     </div>
   )
 }
+
+/* <Button>Submit</Button>*/
 
 const mapStateToProps = state => {
   return {
