@@ -3,7 +3,13 @@ import { connect } from 'react-redux'
 import MenuAppBar from '../../components/MenuAppBar'
 import { getCategory } from '../../action-creators/categories'
 import CategoryListItem from '../../components/CategoryListItem'
-
+import Button from 'material-ui/Button'
+import Dialog, {
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle
+} from 'material-ui/Dialog'
 class Category extends React.Component {
   componentDidMount() {
     const id = this.props.match.params.id
