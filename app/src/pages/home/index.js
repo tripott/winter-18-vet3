@@ -15,7 +15,7 @@ const Welcome = () => (
       Welcome to the Veterans Support Network
     </Typography>
 
-    <Link to="/resources">
+    <Link to="/resources" style={{ textDecoration: 'none' }}>
       <Button variant="raised" color="primary">
         Browse Resources
       </Button>
