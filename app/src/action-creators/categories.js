@@ -53,3 +53,13 @@ export const cancel = history => (dispatch, getState) => {
   dispatch({ type: RESET_ADD_CAT_FORM })
   history.push('/categories')
 }
+
+export const deleteCategory = (id, history) => async (dispatch, getState) => {
+  const method = 'DELETE'
+  const headers = { 'Content-Type': 'application/json' }
+  await fetch(`${url}/categories/${id}`, { method, headers }).then(res =>
+    res.json()
+  )
+  dispatch(getCategories)
+  history.push('/categories')
+}

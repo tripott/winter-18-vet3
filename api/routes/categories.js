@@ -1,4 +1,4 @@
-const { getDoc, addDoc } = require('../lib/dal-helper')
+const { getDoc, addDoc, deleteDoc } = require('../lib/dal-helper')
 const { getCategories } = require('../dal')
 const slugify = require('slugify')
 
@@ -19,5 +19,8 @@ module.exports = app => {
       lower: true
     })}`
     addDoc(req.body).then(doc => res.send(doc))
+  })
+  app.delete('/categories/:id', (req, res) => {
+    deleteDoc(req.params.id).then(doc => res.send(doc))
   })
 }
