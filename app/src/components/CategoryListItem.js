@@ -5,7 +5,7 @@ import Divider from 'material-ui/Divider'
 import { Link } from 'react-router-dom'
 
 const CategoryListItem = props => {
-  const { name, shortDesc, icon, _id } = props.category
+  const { shortName, shortDesc, icon, _id } = props.category
 
   return (
     <div>
@@ -18,7 +18,7 @@ const CategoryListItem = props => {
       >
         <ListItem>
           <Icon>{icon}</Icon>
-          <ListItemText primary={name} secondary={shortDesc} />
+          <ListItemText primary={shortName} secondary={shortDesc} />
         </ListItem>
         <Divider />
       </Link>

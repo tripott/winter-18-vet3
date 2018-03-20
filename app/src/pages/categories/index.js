@@ -28,7 +28,7 @@ const Categories = props => {
     <div style={{ marginTop: '56px' }}>
       <MenuAppBar title="Categories" />
       <List>{map(c => <CategoryListItem category={c} />, categories)}</List>
-      <Link to="/resources/new">
+      <Link to="/categories/new">
         <Button
           className={classes.button}
           variant="fab"
