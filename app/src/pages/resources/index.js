@@ -23,10 +23,8 @@ const styles = theme => ({
 })
 
 const Resources = props => {
-
-  console.log('props', props)
+  // props.toggleDrawer()
   const { classes } = props
-
   return (
     <div>
       <MenuAppBar title="Resources" />

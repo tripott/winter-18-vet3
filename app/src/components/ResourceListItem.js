@@ -14,7 +14,6 @@ import {
   drop,
   contains
 } from 'ramda'
-import { Link } from 'react-router-dom'
 
 const ResourceListItem = props => {
   const { name, shortDesc, _id } = props.resource
