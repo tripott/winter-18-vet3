@@ -34,7 +34,6 @@ class Resource extends React.Component {
 //<ResourceListItem name={props.name} shortDesc={props.shortDesc} />
 
 const mapStateToProps = state => {
-  console.log('What IS state?', state)
   return {
     resource: state.resource
   }

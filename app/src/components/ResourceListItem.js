@@ -16,8 +16,7 @@ import {
 } from 'ramda'
 
 const ResourceListItem = props => {
-  console.log('proooops', props)
-  const { name, shortDesc } = props.resource
+  const { name, shortDesc, _id } = props.resource
 
   const removeArticles = arrWords => {
     return contains(head(arrWords), ['the', 'a', 'an'])
@@ -35,7 +34,13 @@ const ResourceListItem = props => {
   )(name)
 
   return (
-    <div>
+    <Link
+      to={`/resources/${_id}`}
+      style={{
+        textDecoration: 'none',
+        color: 'black'
+      }}
+    >
       <ListItem>
         <Link to={`/resources/${props.resource._id}`}>
           <Avatar>{avatarLetter}</Avatar>
@@ -43,7 +48,7 @@ const ResourceListItem = props => {
         </Link>
       </ListItem>
       <Divider />
-    </div>
+    </Link>
   )
 }
 
