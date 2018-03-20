@@ -17,7 +17,6 @@ const styles = theme => ({
     position: 'fixed !important',
     right: '15px !important',
     bottom: '15px !important',
-    margin: 0,
     padding: 0
   }
 })
