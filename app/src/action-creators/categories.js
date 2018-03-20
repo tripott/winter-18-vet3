@@ -33,7 +33,6 @@ export const addCategory = (category, history) => async (
   dispatch,
   getState
 ) => {
-  console.log('inside action creator')
   const method = 'POST'
   const headers = { 'Content-Type': 'application/json' }
   const body = JSON.stringify(category)
@@ -74,11 +73,7 @@ export const updateCategory = (history, category) => async (
   dispatch,
   getState
 ) => {
-  const method = 'PUT'
-  const headers = { 'Content-Type': 'applicaton/json' }
-  const body = JSON.stringify(category)
-
-  const result = await fetch(`${url}/categories/${category._id}`, {
+  await fetch(`${url}/categories/${category._id}`, {
     headers: {
       'Content-Type': 'application/json'
     },
