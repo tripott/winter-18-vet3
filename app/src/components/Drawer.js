@@ -5,15 +5,19 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import InboxIcon from 'material-ui-icons/Inbox'
 import HomeIcon from 'material-ui-icons/Home'
-import HelpIcon from 'material-ui-icons/Help'
 import Divider from 'material-ui/Divider'
 import { TOGGLE_DRAWER } from '../constants'
 import { Drawer } from 'material-ui'
 
+const linkStyle = {
+  textDecoration: 'none',
+  color: 'black'
+}
+
 const sideList = (
   <div>
     <List>
-      <Link to="/" className="router-link">
+      <Link to="/" className="router-link" style={linkStyle}>
         <ListItem button>
           <ListItemIcon>
             <HomeIcon />
@@ -21,7 +25,7 @@ const sideList = (
           <ListItemText primary="Home" />
         </ListItem>
       </Link>
-      <Link to="/resources" className="router-link">
+      <Link to="/resources" className="router-link" style={linkStyle}>
         <ListItem button>
           <ListItemIcon>
             <InboxIcon />
@@ -29,7 +33,7 @@ const sideList = (
           <ListItemText primary="Resources" />
         </ListItem>
       </Link>
-      <Link to="/categories" className="router-link">
+      <Link to="/categories" className="router-link" style={linkStyle}>
         <ListItem button>
           <ListItemIcon>
             <ViewList />

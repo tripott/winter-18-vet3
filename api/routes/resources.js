@@ -3,8 +3,6 @@ const pkGen = require('../lib/pkGen')
 
 module.exports = app => {
   app.get('/resources', (req, res) => {
-    console.log('GET /resources')
-
     getResources({
       include_docs: true,
       startkey: 'resource_',
