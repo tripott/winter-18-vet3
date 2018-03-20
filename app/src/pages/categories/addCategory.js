@@ -1,8 +1,6 @@
 import React from 'react'
 import { withStyles } from 'material-ui/styles'
-import MenuItem from 'material-ui/Menu/MenuItem'
 import TextField from 'material-ui/TextField'
-import PropTypes from 'prop-types'
 import MenuAppBar from '../../components/MenuAppBar'
 import { FormControl } from 'material-ui/Form'
 import Button from 'material-ui/Button'

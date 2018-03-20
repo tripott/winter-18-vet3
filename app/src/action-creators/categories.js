@@ -3,8 +3,7 @@ import {
   SET_CATEGORIES,
   CURRENT_CAT,
   CHANGE_CURRENT_CATEGORY,
-  RESET_ADD_CAT_FORM,
-  ADD_CATEGORY
+  RESET_ADD_CAT_FORM
 } from '../constants'
 const url = 'http://localhost:5000'
 
@@ -36,7 +35,7 @@ export const addCategory = (category, history) => async (
   const method = 'POST'
   const headers = { 'Content-Type': 'application/json' }
   const body = JSON.stringify(category)
-  const result = await fetch(`${url}/categories`, { method, headers, body })
+  await fetch(`${url}/categories`, { method, headers, body })
     .then(httpResponse => httpResponse.json())
     .catch(err => {
       console.log('fetch err', err)
