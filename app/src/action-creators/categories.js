@@ -49,3 +49,8 @@ export const addCategory = (category, history) => async (
 export const changeCategory = (field, value) => (dispatch, getState) => {
   dispatch({ type: CHANGE_CURRENT_CATEGORY, payload: { [field]: value } })
 }
+
+export const cancel = history => (dispatch, getState) => {
+  dispatch({ type: RESET_ADD_CAT_FORM })
+  history.push('/categories')
+}

@@ -8,8 +8,13 @@ import { FormControl } from 'material-ui/Form'
 import Button from 'material-ui/Button'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { changeCategory, addCategory } from '../../action-creators/categories'
+import {
+  changeCategory,
+  addCategory,
+  cancel
+} from '../../action-creators/categories'
 import Icon from 'material-ui/Icon'
+
 /* need to add in each of the following PROPS
 {
   name: '',
@@ -44,7 +49,12 @@ const styles = theme => ({
 */
 export const AddCategory = props => {
   const { classes } = props
-  const icons = [{ value: 'call end' }, { value: 'pets' }, { value: 'email' }]
+  const icons = [
+    { value: 'call_end' },
+    { value: 'pets' },
+    { value: 'email' },
+    { value: 'child_care' }
+  ]
   return (
     <div style={{ marginTop: '56px' }}>
       <MenuAppBar title="Add a Category" showBackArrow={true} {...props} />
@@ -73,12 +83,12 @@ export const AddCategory = props => {
             onChange={e => props.onChange('shortName', e.target.value)}
           />
           <TextField
-            id="shortDesc"
+            id="desc"
             label="Description"
             className={classes.textField}
             margin="normal"
             value={props.category.desc}
-            onChange={e => props.onChange('shortDesc', e.target.value)}
+            onChange={e => props.onChange('desc', e.target.value)}
           />
           <TextField
             id="shortDesc"
@@ -90,26 +100,24 @@ export const AddCategory = props => {
           />
           <TextField
             id="icon"
-            select={true}
-            label="Icon"
+            select
+            label="Select"
             className={classes.textField}
-            margin="normal"
-            value={props.category.icon}
+            defaultValue="hello"
+            value={props.category.icon || ''}
             onChange={e => props.onChange('icon', e.target.value)}
-            ///
             SelectProps={{
-              native: true,
               MenuProps: {
                 className: classes.menu
               }
             }}
-            helperText="Please select an icon"
+            helperText="Please select your currency"
             margin="normal"
           >
             {icons.map(option => (
-              <option key={option.value} value={option.value}>
+              <MenuItem key={option.value} value={option.value}>
                 <Icon>{option.value}</Icon>
-              </option>
+              </MenuItem>
             ))}
           </TextField>
         </FormControl>
@@ -122,9 +130,13 @@ export const AddCategory = props => {
         >
           Submit
         </Button>
-        <Link to="/categories">
-          <Button className={classes.button}>Cancel</Button>
-        </Link>
+
+        <Button
+          onClick={props.cancel(props.history)}
+          className={classes.button}
+        >
+          Cancel
+        </Button>
       </form>
     </div>
   )
@@ -144,6 +156,9 @@ const mapActionsToProps = dispatch => {
     onSubmit: (history, category) => e => {
       e.preventDefault()
       dispatch(addCategory(category, history))
+    },
+    cancel: history => e => {
+      dispatch(cancel(history))
     }
   }
 }
