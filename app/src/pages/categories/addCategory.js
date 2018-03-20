@@ -56,7 +56,11 @@ export const AddCategory = props => {
     { value: 'build' },
     { value: 'shopping_cart' },
     { value: 'explore' },
-    { value: 'attach_money' }
+    { value: 'attach_money' },
+    { value: 'restaurant' },
+    { value: 'person_pin' },
+    { value: 'drive_eta' },
+    { value: 'wc' }
   ]
   return (
     <div style={{ marginTop: '56px' }}>
