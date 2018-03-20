@@ -1,57 +1,39 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import Form from '../../components/Form'
+import { connect } from 'react-redux'
+import { addResource, chgResource } from '../../action-creators/resources'
 
-const NewResource = ({
-  // We're adding these as props that we're going to use.  Creating a props object and destructuring it into pieces.
-  id, // props.id
-  name, // props.name
-  value, // props.value
-  onChange, // props.onChange
-  onSubmit, // props.onSubmit
-  cancelUrl, //props.cancelUrl
-  showValueInput // props.showValueInput
-}) => {
-  /* creates a ternary to see whether there's a value field.
-   If it's true, it will show the value input.  If false, it returns null. */
-  const valueInput = showValueInput ? (
+const NewResource = props => {
+  console.log('NewResource props', props)
+  return (
     <div>
-      <label className="dib">value</label>
-      <input
-        type="text"
-        value={value}
-        onChange={e => onChange('value', e.target.value)}
+      <h1>Add Resource</h1>
+      <Form
+        cancelUrl="/resources"
+        onChange={props.onChange}
+        onSubmit={e => props.onSubmit(props.history, props.currentResource)}
+        {...props.currentResource}
       />
     </div>
-  ) : null
-  /* Below, we're showing our name, id, and possibly our value field (if showValueInput is set to true) */
-  return (
-    /* onSubmit is one of our props. It's defined in our starwars/form.js file
-    (or buzzwords/form.js, or cookies/form.js, etc.). When they click submit,
-    pass in ID, name, and value to the onSubmit function as an object.
-
-    onChange: on a change, we're going to update our 'name' value in state with the
-    value of what's in our text box */
-    <form onSubmit={onSubmit({ id, name, value })}>
-      <div>
-        <label className="dib">id</label>
-        <div>{id}</div>
-      </div>
-      <div>
-        <label className="dib">name</label>
-
-        <input
-          type="text"
-          value={name}
-          onChange={e => onChange('name', e.target.value)}
-        />
-      </div>
-      {valueInput}
-      <div>
-        <button>Submit</button>
-        <Link to={cancelUrl}>Cancel</Link>
-      </div>
-    </form>
   )
 }
 
-export default NewResource
+function mapStateToProps(state) {
+  return {
+    currentResource: state.currentResource
+  }
+}
+
+function mapActionsToProps(dispatch) {
+  return {
+    onChange: (field, value) => dispatch(chgResource(field, value)),
+    onSubmit: (history, resource) => e => {
+      e.preventDefault()
+      dispatch(addResource(resource, history))
+    }
+  }
+}
+
+const connector = connect(mapStateToProps, mapActionsToProps)
+
+export default connector(NewResource)
