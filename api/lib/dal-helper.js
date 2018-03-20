@@ -16,7 +16,10 @@ const allDocs = options => {
 const getDoc = id => db.get(id)
 const addDoc = doc => db.put(doc)
 const deleteDoc = id => db.get(id).then(doc => db.remove(doc))
-const updateDoc = doc => db.put(doc)
+const updateDoc = doc => {
+  console.log('DOC IN DAL', doc)
+  return db.put(doc)
+}
 const dalHelper = {
   allDocs,
   getDoc,

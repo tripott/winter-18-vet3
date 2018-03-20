@@ -24,6 +24,7 @@ module.exports = app => {
     deleteDoc(req.params.id).then(doc => res.send(doc))
   })
   app.put('/categories/:id', (req, res) => {
-    updateDoc(req.body).then(doc => res.send(doc))
+    console.log('REQ BODY IS', req.body)
+    return updateDoc(req.body).then(doc => res.send(doc))
   })
 }

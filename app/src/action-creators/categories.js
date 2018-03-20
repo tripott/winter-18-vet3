@@ -77,10 +77,13 @@ export const updateCategory = (history, category) => async (
   const method = 'PUT'
   const headers = { 'Content-Type': 'applicaton/json' }
   const body = JSON.stringify(category)
+
   const result = await fetch(`${url}/categories/${category._id}`, {
-    method,
-    headers,
-    body
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'PUT',
+    body: JSON.stringify(category)
   }).then(res => res.json())
   dispatch(getCategory(category._id))
   history.push(`/categories/${category._id}`)
