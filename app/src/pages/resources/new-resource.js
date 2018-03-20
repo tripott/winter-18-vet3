@@ -27,9 +27,9 @@ function mapStateToProps(state) {
 function mapActionsToProps(dispatch) {
   return {
     onChange: (field, value) => dispatch(chgResource(field, value)),
-    onSubmit: (history, currentResource) => e => {
+    onSubmit: (history, resource) => e => {
       e.preventDefault()
-      dispatch(addResource(currentResource, history))
+      dispatch(addResource(resource, history))
     }
   }
 }

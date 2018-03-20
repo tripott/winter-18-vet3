@@ -27,14 +27,20 @@ export const addResource = (resource, history) => async (
   const method = 'POST'
   const body = JSON.stringify(resource)
 
-  const result = await fetch(url, {
+  const result = await fetch(`${url}/resources`, {
     headers,
     method,
     body
-  }).then(res => res.json())
-  if (result.ok) {
-    dispatch(getResource)
-    history.push('/resources')
+  })
+    .then(res => res.json())
+    .then(
+      console.log('RESULT', result, 'RESOURCE', resource, 'HISTORY', history)
+    )
+  if (result) {
+    if (result.ok) {
+      dispatch(getResource)
+      history.push('/resources')
+    }
   }
 }
 

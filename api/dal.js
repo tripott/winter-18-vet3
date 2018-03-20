@@ -8,6 +8,7 @@ const getResource = resourceId => getDoc(resourceId)
 const getCategories = options => allDocs(options || { include_docs: true })
 
 const addResource = doc => {
+  doc.type = 'resource'
   doc._id = pkGen(doc)
   return addDoc(doc)
 }
