@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import MenuAppBar from '../../components/MenuAppBar'
 import { getCategory, deleteCategory } from '../../action-creators/categories'
@@ -30,7 +31,12 @@ class Category extends React.Component {
           <CategoryListItem category={props.category} />
           <p>{props.category.desc}</p>
         </div>
-        <Button color="primary">Edit</Button>
+        <Link
+          style={{ textDecoration: 'none' }}
+          to={`/categories/${props.category._id}/edit`}
+        >
+          <Button color="primary">Edit</Button>
+        </Link>
         <Button color="secondary" onClick={props.toggleDelete}>
           Delete
         </Button>

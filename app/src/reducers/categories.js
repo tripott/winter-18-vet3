@@ -3,7 +3,8 @@ import {
   CURRENT_CAT,
   CHANGE_CURRENT_CATEGORY,
   RESET_ADD_CAT_FORM,
-  TOGGLE_DELETE
+  TOGGLE_DELETE,
+  EDIT_CURRENT_CATEGORY
 } from '../constants'
 import { merge, not } from 'ramda'
 
@@ -22,6 +23,8 @@ export const category = (state = {}, action) => {
       return action.payload
     case TOGGLE_DELETE:
       return merge(state, { toggleDelete: not(state.toggleDelete) })
+    case EDIT_CURRENT_CATEGORY:
+      return merge(state, action.payload)
     default:
       return state
   }

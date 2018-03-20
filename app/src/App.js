@@ -7,6 +7,7 @@ import Resource from './pages/resources/show'
 import Resources from './pages/resources'
 import Categories from './pages/categories'
 import AddCategory from './pages/categories/addCategory'
+import EditCategory from './pages/categories/edit'
 class App extends Component {
   render() {
     return (
@@ -18,7 +19,8 @@ class App extends Component {
             <Route path="/resources/:id" component={Resource} />
             <Route exact path="/categories" component={Categories} />
             <Route exact path="/categories/new" component={AddCategory} />
-            <Route path="/categories/:id" component={Category} />
+            <Route exact path="/categories/:id" component={Category} />
+            <Route path="/categories/:id/edit" component={EditCategory} />
           </Switch>
         </div>
       </BrowserRouter>
