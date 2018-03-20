@@ -20,6 +20,11 @@ const Welcome = () => (
         Browse Resources
       </Button>
     </Link>
+    <Link to="/categories" style={{ textDecoration: 'none' }}>
+      <Button variant="raised" color="primary" style={{ marginTop: '8px' }}>
+        Browse Categories
+      </Button>
+    </Link>
   </center>
 )
 
