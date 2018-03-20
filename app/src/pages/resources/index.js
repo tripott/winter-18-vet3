@@ -24,7 +24,6 @@ const styles = theme => ({
 
 const Resources = props => {
   // props.toggleDrawer()
-  console.log('props', props)
   const { classes } = props
   return (
     <div>
@@ -49,7 +48,6 @@ const Resources = props => {
 }
 
 const mapStateToProps = state => {
-  console.log('What IS state?', state)
   return {
     resources: state.resources
   }
