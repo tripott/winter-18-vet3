@@ -1,4 +1,10 @@
-import { SET_RESOURCES, GET_RESOURCE } from '../constants'
+import {
+  SET_RESOURCES,
+  GET_RESOURCE,
+  CHG_CURRENT_RESOURCE,
+  CLEAR_CURRENT_RESOURCE
+} from '../constants'
+import { merge } from 'ramda'
 
 /*
 A reducer named "resources" would be responsible
@@ -18,6 +24,17 @@ export const resource = (state = {}, action) => {
   switch (action.type) {
     case GET_RESOURCE:
       return action.payload
+    default:
+      return state
+  }
+}
+
+export const currentResource = (state = {}, action) => {
+  switch (action.type) {
+    case CHG_CURRENT_RESOURCE:
+      return merge(state, action.payload)
+    case CLEAR_CURRENT_RESOURCE:
+      return {}
     default:
       return state
   }

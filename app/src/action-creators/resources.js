@@ -1,11 +1,16 @@
 import fetch from 'isomorphic-fetch'
-import { SET_RESOURCES, GET_RESOURCE } from '../constants'
+import {
+  SET_RESOURCES,
+  GET_RESOURCE,
+  CHG_CURRENT_RESOURCE,
+  CLEAR_CURRENT_RESOURCE
+} from '../constants'
 const url = 'http://localhost:5000'
 
 /*
 getResources()
 - use fetch to make a GET to /resources
-- take array of resource documents and turn them into json
+- take array of resource documents and t  urn them into json
 - dispatch an action containing the resources as a payload:
 	dispatch({type: SET_RESOURCES, payload: resources})
 */
@@ -18,4 +23,31 @@ export const getResource = id => async (dispatch, getState) => {
   dispatch({ type: GET_RESOURCE, payload: {} })
   const resource = await fetch(`${url}/resources/${id}`).then(res => res.json())
   dispatch({ type: GET_RESOURCE, payload: resource })
+}
+
+export const addResource = (resource, history) => async (
+  dispatch,
+  getState
+) => {
+  const headers = { 'Content-Type': 'application/json' }
+  const method = 'POST'
+  const body = JSON.stringify(resource)
+
+  const result = await fetch(`${url}/resources`, {
+    headers,
+    method,
+    body
+  }).then(res => res.json())
+
+  if (result) {
+    if (result.ok) {
+      dispatch(getResources)
+      dispatch({ type: CLEAR_CURRENT_RESOURCE })
+      history.push('/resources')
+    }
+  }
+}
+
+export const chgResource = (field, value) => async (dispatch, getState) => {
+  dispatch({ type: CHG_CURRENT_RESOURCE, payload: { [field]: value } })
 }

@@ -1,7 +1,9 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 
-import { resource, resources } from './reducers/resources'
+
+import { resource, resources, currentResource } from './reducers/resources'
 import { categories, category, addCategoryForm } from './reducers/categories'
+
 
 import appData from './reducers/app-data'
 import drawer from './reducers/drawer'
@@ -16,7 +18,9 @@ const store = createStore(
     category,
     categories,
     drawer,
+    currentResource,
     addCategoryForm
+
   }),
 
   applyMiddleware(thunk)
