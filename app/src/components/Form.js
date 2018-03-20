@@ -1,5 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { withStyles } from 'material-ui/styles'
+import TextField from 'material-ui/TextField'
+import { FormControl } from 'material-ui/Form'
 
 const Form = ({
   // We're adding these as props that we're going to use.  Creating a props object and destructuring it into pieces.
@@ -35,52 +38,60 @@ const Form = ({
 
     onChange: on a change, we're going to update our 'name' value in state with the
     value of what's in our text box */
+
     <form onSubmit={onSubmit({ _id, name, value })}>
-      <div>
-        <label className="dib">Name: </label>
-        <input
-          type="text"
-          value={name}
-          onChange={e => onChange('name', e.target.value)}
-        />
-      </div>
-      <div>
-        <label className="dib">Formal Name: </label>
-        <input
-          type="text"
-          value={formalName}
-          onChange={e => onChange('formalName', e.target.value)}
-        />
-      </div>
-      <div>
-        <label className="dib">Short Description: </label>
-        <input
-          type="text"
-          value={shortDesc}
-          onChange={e => onChange('shortDesc', e.target.value)}
-        />
-      </div>
-      <div>
-        <label className="dib">Purpose: </label>
-        <input
-          type="text"
-          value={purpose}
-          onChange={e => onChange('purpose', e.target.value)}
-        />
-      </div>
-      <div>
-        <label className="dib">Primary Phone: </label>
-        <input
-          type="text"
-          value={primaryPhone}
-          onChange={e => onChange('primaryPhone', e.target.value)}
-        />
-      </div>
-      {valueInput}
-      <div>
-        <button>Submit</button>
-        <Link to={cancelUrl}>Cancel</Link>
-      </div>
+      <FormControl>
+        <div>
+          <TextField
+            id="name"
+            label="Name"
+            value={name}
+            onChange={e => onChange('name', e.target.value)}
+            margin="normal"
+          />
+        </div>
+        <div>
+          <TextField
+            id="formalName"
+            label="Formal Name"
+            value={formalName}
+            onChange={e => onChange('formalName', e.target.value)}
+            margin="normal"
+          />
+        </div>
+        <div>
+          <TextField
+            id="shortDesc"
+            label="Short Description"
+            value={shortDesc}
+            onChange={e => onChange('shortDesc', e.target.value)}
+            margin="normal"
+          />
+        </div>
+        <div>
+          <TextField
+            id="purpose"
+            label="Purpose"
+            value={purpose}
+            onChange={e => onChange('purpose', e.target.value)}
+            margin="normal"
+          />
+        </div>
+        <div>
+          <TextField
+            id="primaryPhone"
+            label="Primary Phone"
+            value={primaryPhone}
+            onChange={e => onChange('primaryPhone', e.target.value)}
+            margin="normal"
+          />
+        </div>
+        {valueInput}
+        <div>
+          <button>Submit</button>
+          <Link to={cancelUrl}>Cancel</Link>
+        </div>
+      </FormControl>
     </form>
   )
 }

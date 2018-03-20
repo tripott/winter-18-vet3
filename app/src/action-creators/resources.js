@@ -1,5 +1,10 @@
 import fetch from 'isomorphic-fetch'
-import { SET_RESOURCES, GET_RESOURCE, CHG_CURRENT_RESOURCE } from '../constants'
+import {
+  SET_RESOURCES,
+  GET_RESOURCE,
+  CHG_CURRENT_RESOURCE,
+  CLEAR_CURRENT_RESOURCE
+} from '../constants'
 const url = 'http://localhost:5000'
 
 /*
@@ -31,14 +36,12 @@ export const addResource = (resource, history) => async (
     headers,
     method,
     body
-  })
-    .then(res => res.json())
-    .then(
-      console.log('RESULT', result, 'RESOURCE', resource, 'HISTORY', history)
-    )
+  }).then(res => res.json())
+
   if (result) {
     if (result.ok) {
-      dispatch(getResource)
+      dispatch(getResources)
+      dispatch({ type: CLEAR_CURRENT_RESOURCE })
       history.push('/resources')
     }
   }

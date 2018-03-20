@@ -1,4 +1,9 @@
-import { SET_RESOURCES, GET_RESOURCE, CHG_CURRENT_RESOURCE } from '../constants'
+import {
+  SET_RESOURCES,
+  GET_RESOURCE,
+  CHG_CURRENT_RESOURCE,
+  CLEAR_CURRENT_RESOURCE
+} from '../constants'
 import { merge } from 'ramda'
 
 /*
@@ -24,10 +29,12 @@ export const resource = (state = {}, action) => {
   }
 }
 
-export const currentResource = (state = '', action) => {
+export const currentResource = (state = {}, action) => {
   switch (action.type) {
     case CHG_CURRENT_RESOURCE:
       return merge(state, action.payload)
+    case CLEAR_CURRENT_RESOURCE:
+      return {}
     default:
       return state
   }
