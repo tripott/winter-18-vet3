@@ -1,5 +1,11 @@
 import fetch from 'isomorphic-fetch'
-import { SET_CATEGORIES, CURRENT_CAT } from '../constants'
+import {
+  SET_CATEGORIES,
+  CURRENT_CAT,
+  CHANGE_CURRENT_CATEGORY,
+  RESET_ADD_CAT_FORM,
+  ADD_CATEGORY
+} from '../constants'
 const url = 'http://localhost:5000'
 
 /*
@@ -15,8 +21,31 @@ export const getCategories = async (dispatch, getState) => {
 }
 
 export const getCategory = id => async (dispatch, getState) => {
+  dispatch({ type: CURRENT_CAT, payload: {} })
   const category = await fetch(`${url}/categories/${id}`).then(res =>
     res.json()
   )
   dispatch({ type: CURRENT_CAT, payload: category })
+}
+
+export const addCategory = (category, history) => async (
+  dispatch,
+  getState
+) => {
+  console.log('inside action creator')
+  const method = 'POST'
+  const headers = { 'Content-Type': 'application/json' }
+  const body = JSON.stringify(category)
+  const result = await fetch(`${url}/categories`, { method, headers, body })
+    .then(httpResponse => httpResponse.json())
+    .catch(err => {
+      console.log('fetch err', err)
+    })
+  dispatch(getCategories)
+  dispatch({ type: RESET_ADD_CAT_FORM })
+  history.push('/categories')
+}
+
+export const changeCategory = (field, value) => (dispatch, getState) => {
+  dispatch({ type: CHANGE_CURRENT_CATEGORY, payload: { [field]: value } })
 }
