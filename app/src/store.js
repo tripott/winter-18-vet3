@@ -1,6 +1,6 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
-
-import { resource, resources, currentResource } from './reducers/resources'
+import { searchCriteria } from './reducers/search'
+import { resource, resources } from './reducers/resources'
 import { categories, category, addCategoryForm } from './reducers/categories'
 
 import appData from './reducers/app-data'
@@ -10,6 +10,7 @@ import thunk from 'redux-thunk'
 
 const store = createStore(
   combineReducers({
+    searchCriteria,
     resource,
     resources,
     appData,
