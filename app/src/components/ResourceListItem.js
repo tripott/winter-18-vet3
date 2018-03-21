@@ -2,6 +2,7 @@ import React from 'react'
 import { ListItem, ListItemText } from 'material-ui/List'
 import Avatar from 'material-ui/Avatar'
 import Divider from 'material-ui/Divider'
+import { Link } from 'react-router-dom'
 import {
   toLower,
   split,
@@ -15,7 +16,7 @@ import {
 } from 'ramda'
 
 const ResourceListItem = props => {
-  const { name, shortDesc } = props.resource
+  const { name, shortDesc, _id } = props.resource
 
   const removeArticles = arrWords => {
     return contains(head(arrWords), ['the', 'a', 'an'])
@@ -33,13 +34,28 @@ const ResourceListItem = props => {
   )(name)
 
   return (
-    <div>
-      <ListItem>
-        <Avatar>{avatarLetter}</Avatar>
-        <ListItemText primary={name} secondary={shortDesc} />
-      </ListItem>
+    <Link
+      to={`/resources/${_id}`}
+      style={{
+        textDecoration: 'none',
+        color: 'black'
+      }}
+    >
+      <Link
+        style={{ textDecoration: 'none' }}
+        to={`/resources/${props.resource._id}`}
+      >
+        <ListItem>
+          <Avatar>{avatarLetter}</Avatar>
+          <ListItemText
+            style={{ marginLeft: '15px' }}
+            primary={name}
+            secondary={shortDesc}
+          />
+        </ListItem>
+      </Link>
       <Divider />
-    </div>
+    </Link>
   )
 }
 

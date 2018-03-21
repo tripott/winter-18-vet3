@@ -7,9 +7,9 @@ import { FormControl } from 'material-ui/Form'
 import Button from 'material-ui/Button'
 import { connect } from 'react-redux'
 import {
-  changeCategory,
-  addCategory,
-  cancel
+  changeCategory1,
+  cancelEdit,
+  updateCategory
 } from '../../action-creators/categories'
 import Icon from 'material-ui/Icon'
 
@@ -22,7 +22,21 @@ import Icon from 'material-ui/Icon'
   type: '',
 }
 WE WILL HARD CODE THE ID =  _id: 'category_basic-needs-assistance'
-*/
+*/ const icons = [
+  { value: 'call end' },
+  { value: 'pets' },
+  { value: 'email' },
+  { value: 'child_care' },
+  { value: 'accessibility' },
+  { value: 'build' },
+  { value: 'shopping_cart' },
+  { value: 'explore' },
+  { value: 'attach_money' },
+  { value: 'restaurant' },
+  { value: 'person_pin' },
+  { value: 'drive_eta' },
+  { value: 'wc' }
+]
 
 const styles = theme => ({
   container: {
@@ -41,30 +55,12 @@ const styles = theme => ({
     margin: theme.spacing.unit
   }
 })
-/*
-- need back arrow
--
-*/
-export const AddCategory = props => {
+
+const EditCategory = props => {
   const { classes } = props
-  const icons = [
-    { value: 'call end' },
-    { value: 'pets' },
-    { value: 'email' },
-    { value: 'child_care' },
-    { value: 'accessibility' },
-    { value: 'build' },
-    { value: 'shopping_cart' },
-    { value: 'explore' },
-    { value: 'attach_money' },
-    { value: 'restaurant' },
-    { value: 'person_pin' },
-    { value: 'drive_eta' },
-    { value: 'wc' }
-  ]
   return (
     <div style={{ marginTop: '56px' }}>
-      <MenuAppBar title="Add a Category" showBackArrow={true} {...props} />
+      <MenuAppBar title="Edit Category" showBackArrow={true} {...props} />
       <form>
         <FormControl
           className={classes.container}
@@ -139,7 +135,7 @@ export const AddCategory = props => {
         </Button>
         <Button
           className={classes.button}
-          onClick={props.cancel(props.history)}
+          onClick={() => props.cancel(props.history)}
         >
           Cancel
         </Button>
@@ -148,27 +144,18 @@ export const AddCategory = props => {
   )
 }
 
-/* <Button>Submit</Button>*/
-
-const mapStateToProps = state => {
-  return {
-    category: state.addCategoryForm
-  }
+function mapStateToProps(state) {
+  return { category: state.category }
 }
-
-const mapActionsToProps = dispatch => {
+function mapActionsToProps(dispatch) {
   return {
-    onChange: (field, value) => dispatch(changeCategory(field, value)),
+    onChange: (field, value) => dispatch(changeCategory1(field, value)),
     onSubmit: (history, category) => e => {
       e.preventDefault()
-      dispatch(addCategory(category, history))
+      dispatch(updateCategory(history, category))
     },
-    cancel: history => e => {
-      dispatch(cancel(history))
-    }
+    cancel: history => dispatch(cancelEdit(history))
   }
 }
-
 const connector = connect(mapStateToProps, mapActionsToProps)
-
-export default connector(withStyles(styles)(AddCategory))
+export default connector(withStyles(styles)(EditCategory))
