@@ -1,6 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { map } from 'ramda'
+import {
+  map,
+  filter,
+  compose,
+  contains,
+  toLower,
+  split,
+  isNil,
+  isEmpty,
+  not
+} from 'ramda'
 import ResourceListItem from '../../components/ResourceListItem'
 import List from 'material-ui/List'
 import withDrawer from '../../components/Drawer'
@@ -30,6 +40,17 @@ const styles = theme => ({
 })
 
 const Search = props => {
+  const searchResults = not(
+    isNil(props.searchCriteria) || isEmpty(props.searchCriteria)
+  )
+    ? compose(
+        map(r => <ResourceListItem resource={r} />),
+        filter(r =>
+          contains(toLower(props.searchCriteria), split(' ', toLower(r.name)))
+        )
+      )(props.resources)
+    : null
+
   const { classes } = props
   return (
     <div>
@@ -46,6 +67,7 @@ const Search = props => {
             value={props.searchCriteria}
           />
         </form>
+        <List>{searchResults}</List>
       </div>
     </div>
   )
@@ -69,6 +91,15 @@ const connector = connect(mapStateToProps, mapActionsToProps)
 export default withDrawer(connector(withStyles(styles)(Search)))
 
 /*
+//not(isNil(props.searchCriteria) || isEmpty(props.searchCriteria))
+compose(
+map(r => <ResourceListItem resource={r} />),
+filter(r =>
+  any(toLower(props.searchCriteria), split(' ', toLower(r.name)))
+)
+)(props.resources)
+
+
  <form  noValidate autoComplete="off">
 <TextField
           id="search"
@@ -90,9 +121,7 @@ export default withDrawer(connector(withStyles(styles)(Search)))
    </Button>
  </Link>
 
- <List>
-   {map(r => <ResourceListItem resource={r} />, props.resources)}
- </List>
+
 
 
 */
