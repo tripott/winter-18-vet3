@@ -8,6 +8,7 @@ import Resources from './pages/resources'
 import Categories from './pages/categories'
 import AddCategory from './pages/categories/addCategory'
 import EditCategory from './pages/categories/edit'
+import Search from './pages/search'
 class App extends Component {
   render() {
     return (
@@ -15,6 +16,7 @@ class App extends Component {
         <div>
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route path="/search" component={Search} />
             <Route exact path="/resources" component={Resources} />
             <Route path="/resources/:id" component={Resource} />
             <Route exact path="/categories" component={Categories} />
