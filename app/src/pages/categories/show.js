@@ -6,6 +6,9 @@ import { getCategory, deleteCategory } from '../../action-creators/categories'
 import CategoryListItem from '../../components/CategoryListItem'
 import ResourceListItem from '../../components/ResourceListItem'
 import Button from 'material-ui/Button'
+import Paper from 'material-ui/Paper'
+import { withStyles } from 'material-ui/styles'
+import Typography from 'material-ui/Typography'
 import { compose, filter, map } from 'ramda'
 import List from 'material-ui/List'
 import Dialog, {
@@ -15,6 +18,17 @@ import Dialog, {
   DialogTitle
 } from 'material-ui/Dialog'
 import { TOGGLE_DELETE } from '../../constants'
+
+const styles = theme => ({
+  root: theme.mixins.gutters({
+    paddingTop: 8,
+    paddingBottom: 8,
+    marginTop: theme.spacing.unit * 3
+  }),
+  cleaned: {
+    textDecoration: 'none'
+  }
+})
 
 class Category extends React.Component {
   componentDidMount() {
@@ -27,14 +41,24 @@ class Category extends React.Component {
     if (props.category._id !== props.match.params.id) {
       return <h1>Loading Category...</h1>
     }
-
+    const { classes } = props
     return (
       <div>
-        <div style={{ marginTop: '56px' }}>
+        <div>
           <MenuAppBar {...this.props} showBackArrow={true} title="Category" />
-          <CategoryListItem category={props.category} />
-          <p>{props.category.desc}</p>
+          <Paper className={classes.root} elevation={2}>
+            <CategoryListItem category={props.category} />
+            <Typography style={{ paddingTop: '8px' }} component="p">
+              {props.category.desc}
+            </Typography>
+          </Paper>
         </div>
+        <List>
+          {compose(
+            map(r => <ResourceListItem resource={r} />),
+            filter(r => props.category._id == r.categoryId)
+          )(props.resources)}
+        </List>
         <Link
           style={{ textDecoration: 'none' }}
           to={`/categories/${props.category._id}/edit`}
@@ -44,12 +68,6 @@ class Category extends React.Component {
         <Button color="secondary" onClick={props.toggleDelete}>
           Delete
         </Button>
-        <List>
-          {compose(
-            map(r => <ResourceListItem resource={r} />),
-            filter(r => props.category._id == r.categoryId)
-          )(props.resources)}
-        </List>
         <Dialog
           open={props.category.toggleDelete}
           aria-labelledby="alert-dialog-title"
@@ -98,4 +116,4 @@ const mapActionsToProps = dispatch => {
 }
 const connector = connect(mapStateToProps, mapActionsToProps)
 
-export default connector(Category)
+export default connector(withStyles(styles)(Category))
