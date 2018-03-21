@@ -9,7 +9,7 @@ import Drawer from '../../components/Drawer'
 const Welcome = () => (
   <center>
     <img
-      alt="vet services logo"
+      alt="Veterans Support Network"
       style={{ paddingTop: '16px' }}
       src="/tcvsn-ico.png"
     />

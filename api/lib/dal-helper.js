@@ -5,7 +5,7 @@ PouchDB.plugin(require('pouchdb-find'))
 const HTTPError = require('node-http-error')
 const { pluck } = require('ramda')
 
-console.log(`The db is ${process.env.COUCH_URL}${process.env.COUCH_DBNAME}`)
+//console.log(`The db is ${process.env.COUCH_URL}${process.env.COUCH_DBNAME}`)
 
 const db = new PouchDB(`${process.env.COUCH_URL}${process.env.COUCH_DBNAME}`)
 
@@ -14,10 +14,10 @@ const allDocs = options => {
 }
 
 const getDoc = id => db.get(id)
+
 const addDoc = doc => db.put(doc)
 const deleteDoc = id => db.get(id).then(doc => db.remove(doc))
 const updateDoc = doc => {
-  console.log('DOC IN DAL', doc)
   return db.put(doc)
 }
 const dalHelper = {
