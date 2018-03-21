@@ -21,6 +21,8 @@ import AddIcon from 'material-ui-icons/Add'
 import Button from 'material-ui/Button'
 import TextField from 'material-ui/TextField'
 import { CHANGE_SEARCH_CRITERIA } from '../../constants'
+import searchStringBuilder from '../../lib/build-search-string'
+import searchDocs from '../../lib/search-docs'
 
 const styles = theme => ({
   button: {
@@ -39,15 +41,20 @@ const styles = theme => ({
   pageMargin: { marginTop: '56px' }
 })
 
+const srcBuildr = searchStringBuilder([
+  'name',
+  'purpose',
+  'formalName',
+  'shortDesc'
+])
+
 const Search = props => {
   const searchResults = not(
     isNil(props.searchCriteria) || isEmpty(props.searchCriteria)
   )
     ? compose(
         map(r => <ResourceListItem resource={r} />),
-        filter(r =>
-          contains(toLower(props.searchCriteria), split(' ', toLower(r.name)))
-        )
+        searchDocs(srcBuildr, props.searchCriteria)
       )(props.resources)
     : null
 
@@ -91,6 +98,14 @@ const connector = connect(mapStateToProps, mapActionsToProps)
 export default withDrawer(connector(withStyles(styles)(Search)))
 
 /*
+
+compose(
+    map(r => <ResourceListItem resource={r} />),
+    filter(r =>
+      contains(toLower(props.searchCriteria), split(' ', toLower(r.name)))
+    )
+  )(props.resources)
+
 //not(isNil(props.searchCriteria) || isEmpty(props.searchCriteria))
 compose(
 map(r => <ResourceListItem resource={r} />),
