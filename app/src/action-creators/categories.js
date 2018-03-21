@@ -3,7 +3,9 @@ import {
   SET_CATEGORIES,
   CURRENT_CAT,
   CHANGE_CURRENT_CATEGORY,
-  RESET_ADD_CAT_FORM
+  RESET_ADD_CAT_FORM,
+  RESET_EDIT_CAT_FORM,
+  EDIT_CURRENT_CATEGORY
 } from '../constants'
 const url = 'http://localhost:5000'
 
@@ -31,7 +33,6 @@ export const addCategory = (category, history) => async (
   dispatch,
   getState
 ) => {
-  console.log('inside action creator')
   const method = 'POST'
   const headers = { 'Content-Type': 'application/json' }
   const body = JSON.stringify(category)
@@ -47,4 +48,38 @@ export const addCategory = (category, history) => async (
 
 export const changeCategory = (field, value) => (dispatch, getState) => {
   dispatch({ type: CHANGE_CURRENT_CATEGORY, payload: { [field]: value } })
+}
+export const changeCategory1 = (field, value) => (dispatch, getState) => {
+  dispatch({ type: EDIT_CURRENT_CATEGORY, payload: { [field]: value } })
+}
+export const cancel = history => (dispatch, getState) => {
+  dispatch({ type: RESET_ADD_CAT_FORM })
+  history.push('/categories')
+}
+export const cancelEdit = history => (dispatch, getState) => {
+  dispatch({ type: RESET_EDIT_CAT_FORM })
+  history.goBack()
+}
+export const deleteCategory = (id, history) => async (dispatch, getState) => {
+  const method = 'DELETE'
+  const headers = { 'Content-Type': 'application/json' }
+  await fetch(`${url}/categories/${id}`, { method, headers }).then(res =>
+    res.json()
+  )
+  dispatch(getCategories)
+  history.push('/categories')
+}
+export const updateCategory = (history, category) => async (
+  dispatch,
+  getState
+) => {
+  await fetch(`${url}/categories/${category._id}`, {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'PUT',
+    body: JSON.stringify(category)
+  }).then(res => res.json())
+  dispatch(getCategory(category._id))
+  history.push(`/categories/${category._id}`)
 }
