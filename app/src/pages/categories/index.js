@@ -27,6 +27,7 @@ const Categories = props => {
   return (
     <div style={{ marginTop: '56px' }}>
       <MenuAppBar title="Categories" />
+<<<<<<< HEAD
       <List>{map(c => <CategoryListItem category={c} />, categories)}</List>
       <Link to="/categories/new">
         <Button
@@ -38,6 +39,15 @@ const Categories = props => {
           <AddIcon />
         </Button>
       </Link>
+=======
+      <List>
+        {map(
+          c => <CategoryListItem category={c} />,
+
+          props.categories
+        )}
+      </List>
+>>>>>>> c017700... clean up category item
     </div>
   )
 }
