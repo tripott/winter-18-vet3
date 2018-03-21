@@ -10,6 +10,7 @@ import { withStyles } from 'material-ui/styles'
 import AddIcon from 'material-ui-icons/Add'
 import Button from 'material-ui/Button'
 import TextField from 'material-ui/TextField'
+import { CHANGE_SEARCH_CRITERIA } from '../../constants'
 
 const styles = theme => ({
   button: {
@@ -41,6 +42,8 @@ const Search = props => {
             type="search"
             className={classes.textField}
             margin="normal"
+            onChange={props.onSearchChange}
+            value={props.searchCriteria}
           />
         </form>
       </div>
@@ -50,11 +53,19 @@ const Search = props => {
 
 const mapStateToProps = state => {
   return {
-    resources: state.resources
+    resources: state.resources,
+    searchCriteria: state.searchCriteria
   }
 }
 
-const connector = connect(mapStateToProps)
+const mapActionsToProps = dispatch => {
+  return {
+    onSearchChange: e =>
+      dispatch({ type: CHANGE_SEARCH_CRITERIA, payload: e.target.value })
+  }
+}
+
+const connector = connect(mapStateToProps, mapActionsToProps)
 export default withDrawer(connector(withStyles(styles)(Search)))
 
 /*
