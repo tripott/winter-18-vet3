@@ -7,10 +7,7 @@ import { FormControl } from 'material-ui/Form'
 import Button from 'material-ui/Button'
 import { connect } from 'react-redux'
 import {
-  changeCategory,
   changeCategory1,
-  addCategory,
-  cancel,
   cancelEdit,
   updateCategory
 } from '../../action-creators/categories'
