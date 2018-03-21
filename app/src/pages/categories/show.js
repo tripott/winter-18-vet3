@@ -4,7 +4,10 @@ import { connect } from 'react-redux'
 import MenuAppBar from '../../components/MenuAppBar'
 import { getCategory, deleteCategory } from '../../action-creators/categories'
 import CategoryListItem from '../../components/CategoryListItem'
+import ResourceListItem from '../../components/ResourceListItem'
 import Button from 'material-ui/Button'
+import { compose, filter, map } from 'ramda'
+import List from 'material-ui/List'
 import Dialog, {
   DialogActions,
   DialogContent,
@@ -12,6 +15,7 @@ import Dialog, {
   DialogTitle
 } from 'material-ui/Dialog'
 import { TOGGLE_DELETE } from '../../constants'
+
 class Category extends React.Component {
   componentDidMount() {
     const id = this.props.match.params.id
@@ -40,7 +44,12 @@ class Category extends React.Component {
         <Button color="secondary" onClick={props.toggleDelete}>
           Delete
         </Button>
-
+        <List>
+          {compose(
+            map(r => <ResourceListItem resource={r} />),
+            filter(r => props.category._id == r.categoryId)
+          )(props.resources)}
+        </List>
         <Dialog
           open={props.category.toggleDelete}
           aria-labelledby="alert-dialog-title"
@@ -76,7 +85,8 @@ class Category extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    category: state.category
+    category: state.category,
+    resources: state.resources
   }
 }
 const mapActionsToProps = dispatch => {
