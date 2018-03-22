@@ -3,13 +3,9 @@ import {
   SET_CATEGORIES,
   CURRENT_CAT,
   CHANGE_CURRENT_CATEGORY,
-<<<<<<< HEAD
-  RESET_ADD_CAT_FORM,
   RESET_EDIT_CAT_FORM,
-  EDIT_CURRENT_CATEGORY
-=======
+  EDIT_CURRENT_CATEGORY,
   RESET_ADD_CAT_FORM
->>>>>>> 71f25666e5834ad34d46a7ff067394a49b8f23e7
 } from '../constants'
 const url = 'http://localhost:5000'
 
@@ -37,10 +33,6 @@ export const addCategory = (category, history) => async (
   dispatch,
   getState
 ) => {
-<<<<<<< HEAD
-=======
-  console.log('inside action creator')
->>>>>>> 71f25666e5834ad34d46a7ff067394a49b8f23e7
   const method = 'POST'
   const headers = { 'Content-Type': 'application/json' }
   const body = JSON.stringify(category)
@@ -57,7 +49,7 @@ export const addCategory = (category, history) => async (
 export const changeCategory = (field, value) => (dispatch, getState) => {
   dispatch({ type: CHANGE_CURRENT_CATEGORY, payload: { [field]: value } })
 }
-<<<<<<< HEAD
+
 export const changeCategory1 = (field, value) => (dispatch, getState) => {
   dispatch({ type: EDIT_CURRENT_CATEGORY, payload: { [field]: value } })
 }
@@ -92,5 +84,3 @@ export const updateCategory = (history, category) => async (
   dispatch(getCategory(category._id))
   history.push(`/categories/${category._id}`)
 }
-=======
->>>>>>> 71f25666e5834ad34d46a7ff067394a49b8f23e7
