@@ -8,7 +8,7 @@ import HomeIcon from 'material-ui-icons/Home'
 import Divider from 'material-ui/Divider'
 import { TOGGLE_DRAWER } from '../constants'
 import { Drawer } from 'material-ui'
-
+import Gavel from 'material-ui-icons/Gavel'
 const linkStyle = {
   textDecoration: 'none',
   color: 'black'
@@ -39,6 +39,14 @@ const sideList = (
             <ViewList />
           </ListItemIcon>
           <ListItemText primary="Categories" />
+        </ListItem>
+      </Link>
+      <Link to="/legal" className="router-link" style={linkStyle}>
+        <ListItem button>
+          <ListItemIcon>
+            <Gavel />
+          </ListItemIcon>
+          <ListItemText primary="Legal" />
         </ListItem>
       </Link>
     </List>

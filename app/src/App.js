@@ -6,7 +6,7 @@ import Home from './pages/home'
 import Resource from './pages/resources/show'
 import Resources from './pages/resources'
 import Categories from './pages/categories'
-
+import Memory from './pages/memory'
 import NewResource from './pages/resources/new-resource'
 import Legal from './pages/legal'
 import AddCategory from './pages/categories/addCategory'
@@ -32,6 +32,7 @@ class App extends Component {
             <Route exact path="/categories/:id" component={Category} />
             <Route path="/categories/:id/edit" component={EditCategory} />
             <Route path="/legal" component={Legal} />
+            <Route path="/memory" component={Memory} />
           </Switch>
         </div>
       </BrowserRouter>
