@@ -18,7 +18,7 @@ function emailValid(person) {
 }
 
 function isSuperHeroValid(person) {
-  return person.isSuperHero === 'true' || person.isSuperHero === 'false'
+  return person.isSuperHero === true || person.isSuperHero === false
 }
 
 // function terraformPlanetValid(astronaut) {
