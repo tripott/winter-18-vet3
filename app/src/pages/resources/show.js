@@ -9,6 +9,7 @@ import Typography from 'material-ui/Typography'
 import { withStyles } from 'material-ui/styles'
 import Button from 'material-ui/Button'
 import { Link } from 'react-router-dom'
+import Icon from 'material-ui/Icon'
 import Dialog, {
   DialogActions,
   DialogContent,
@@ -25,6 +26,14 @@ const styles = theme => ({
   }),
   cleaned: {
     textDecoration: 'none'
+  },
+  button: {
+    margin: theme.spacing.unit,
+
+    position: 'fixed !important',
+    right: '15px !important',
+    bottom: '15px !important',
+    padding: 0
   }
 })
 
@@ -63,6 +72,16 @@ class Resource extends React.Component {
               Delete
             </Button>
           </div>
+
+          <Button
+            className={classes.button}
+            variant="fab"
+            style={{ backgroundColor: 'white', color: 'green' }}
+            href={`tel:${props.resource.primaryPhone}`}
+            mini={true}
+          >
+            <Icon>phone</Icon>
+          </Button>
         </div>
         <Dialog
           open={props.resource.confirmDelete}
