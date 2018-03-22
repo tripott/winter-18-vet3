@@ -8,7 +8,7 @@ import Resources from './pages/resources'
 import Categories from './pages/categories'
 
 import NewResource from './pages/resources/new-resource'
-
+import Legal from './pages/legal'
 import AddCategory from './pages/categories/addCategory'
 import EditCategory from './pages/categories/edit'
 import Search from './pages/search'
@@ -31,6 +31,7 @@ class App extends Component {
             <Route exact path="/categories/new" component={AddCategory} />
             <Route exact path="/categories/:id" component={Category} />
             <Route path="/categories/:id/edit" component={EditCategory} />
+            <Route path="/legal" component={Legal} />
           </Switch>
         </div>
       </BrowserRouter>

@@ -68,14 +68,6 @@ const MenuAppBar = props => {
               <SearchIcon />
             </IconButton>
           </Link>
-
-          <IconButton
-            className={classes.lastButton}
-            color="contrast"
-            aria-label="Search"
-          >
-            <SearchIcon />
-          </IconButton>
         </Toolbar>
       </AppBar>
     </div>
