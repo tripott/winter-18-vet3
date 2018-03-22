@@ -78,7 +78,7 @@ class Category extends React.Component {
           </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
-              Confirming delete will probably delete
+              Confirm Delete
             </DialogContentText>
           </DialogContent>
           <DialogActions>

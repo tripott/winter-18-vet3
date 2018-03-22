@@ -36,14 +36,14 @@ module.exports = app => {
         startkey: 'resource_',
         endkey: 'resource_\ufff0'
       })
-        .then(resources => res.send(resources))
         .then(doc =>
           compose(
-            map(doc => set(lensProp('categoryId'), null, doc), data),
+            map(doc => set(lensProp('categoryId'), null, doc)),
             filter(doc => doc.categoryId === req.params.id)
           )(doc)
         )
         .then(docs => bulkUpdate(docs))
+        .then(doc => res.send(doc))
     )
   })
   app.put('/categories/:id', (req, res) => {
