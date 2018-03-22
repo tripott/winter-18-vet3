@@ -34,9 +34,12 @@ const styles = theme => ({
 const Memory = props => {
   return (
     <div style={{ paddingTop: '30px' }}>
-      <MenuAppBar title="Legal" />
+      <MenuAppBar title="In Memory" />
       <div>
         <Paper className={props.classes.root}>
+          <center>
+            <img src="/in-memory.png" alt="Portait of Eileen" />
+          </center>
           <ListItem>
             <Icon className={props.classes.circl}>favorite</Icon>
             <ListItemText
