@@ -66,7 +66,7 @@ const EditCategory = props => {
           className={classes.container}
           noValidate
           autoComplete="off"
-          // onSubmit={e => props.onSubmit(props.history, props.currentCategory)}
+          //onSubmit={e => props.onSubmit(props.history, props.currentCategory)}
           {...props.currentCategory}
         >
           <TextField
@@ -109,7 +109,6 @@ const EditCategory = props => {
             margin="normal"
             onChange={e => props.onChange('icon', e.target.value)}
             value={props.category.icon || ''}
-            ///
             SelectProps={{
               MenuProps: {
                 className: classes.menu
