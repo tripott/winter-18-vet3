@@ -7,7 +7,7 @@ const {
 } = require('../lib/dal-helper')
 const { getCategories, getResources } = require('../dal')
 const slugify = require('slugify')
-const { map, filter, compose, tap } = require('ramda')
+const { map, filter, compose, set, lensProp } = require('ramda')
 
 module.exports = app => {
   app.get('/categories', (req, res) => {
@@ -30,23 +30,20 @@ module.exports = app => {
 
   app.delete('/categories/:id', (req, res) => {
     //updateResourceNull(req.params.id)
-    deleteDoc(req.params.id).then(
-      doc =>
-        getResources({
-          include_docs: true,
-          startkey: 'resource_',
-          endkey: 'resource_\ufff0'
-        })
-      //.then(resources => res.send(resources))
-      // .then(doc =>
-      //   compose(
-      //     tap(x => console.log('this is after the map', x)),
-      //     map(doc => (doc.categoryId = null)),
-      //     tap(x => console.log('this is after the filter', x)),
-      //     filter(doc => doc.categoryId === req.params.id)
-      //   )(doc)
-      // )
-      //.then(bulkUpdate(docs))
+    deleteDoc(req.params.id).then(doc =>
+      getResources({
+        include_docs: true,
+        startkey: 'resource_',
+        endkey: 'resource_\ufff0'
+      })
+        .then(resources => res.send(resources))
+        .then(doc =>
+          compose(
+            map(doc => set(lensProp('categoryId'), null, doc), data),
+            filter(doc => doc.categoryId === req.params.id)
+          )(doc)
+        )
+        .then(docs => bulkUpdate(docs))
     )
   })
   app.put('/categories/:id', (req, res) => {
