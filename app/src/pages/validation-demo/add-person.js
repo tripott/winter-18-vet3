@@ -13,6 +13,8 @@ import MenuAppBar from '../../components/MenuAppBar'
 import Button from 'material-ui/Button'
 import { is, not } from 'ramda'
 import Switch from 'material-ui/Switch'
+import { connect } from 'react-redux'
+import { changeFormValidation } from '../../action-creators/form-validation'
 
 const styles = theme => ({
   container: {
@@ -29,6 +31,12 @@ const styles = theme => ({
 
 const AddFormValidation = props => {
   const { classes } = props
+  const {
+    lastName,
+    addressStreet,
+    email,
+    isSuperHero
+  } = props.formValidationData
 
   return (
     <div style={{ marginTop: '56px' }}>
@@ -37,36 +45,62 @@ const AddFormValidation = props => {
         showBackArrow={true}
         title="Form Validation Demo"
       />
+
       <FormControl className={classes.formControl}>
         <InputLabel htmlFor="name-simple">Last Name</InputLabel>
-        <Input id="name-simple" />
+        <Input
+          id="name-simple"
+          value={lastName}
+          onChange={e => props.onChange('lastName', e.target.value)}
+        />
         <FormHelperText id="addressStreet-helper-text">
           Enter your last name
         </FormHelperText>
       </FormControl>
+
       <FormControl
         className={classes.formControl}
         aria-describedby="name-helper-text"
       >
         <InputLabel htmlFor="addressStreet-helper">Street</InputLabel>
-        <Input id="addressStreet-helper" />
+        <Input
+          id="addressStreet-helper"
+          value={addressStreet}
+          onChange={e => props.onChange('addressStreet', e.target.value)}
+        />
         <FormHelperText id="addressStreet-helper-text">
           Enter your street address
         </FormHelperText>
       </FormControl>
       <FormControl className={classes.formControl}>
         <InputLabel htmlFor="email-disabled">Email</InputLabel>
-        <Input id="email-disabled" type="email" />
+        <Input
+          id="email-disabled"
+          type="email"
+          value={email}
+          onChange={e => props.onChange('email', e.target.value)}
+        />
         <FormHelperText>Enter a valid email address</FormHelperText>
       </FormControl>
+
       <div>
         <FormControl className={classes.formControl}>
           <FormLabel component="legend">Superhero?</FormLabel>
 
-          <FormControlLabel control={<Switch value="isSuperHero" />} label="" />
+          <FormControlLabel
+            control={
+              <Switch
+                value="isSuperHero"
+                checked={isSuperHero}
+                onChange={e => props.onChange('isSuperHero', e.target.checked)}
+              />
+            }
+            label=""
+          />
           <FormHelperText>Toggle this if you have superpowers.</FormHelperText>
         </FormControl>
       </div>
+
       <div>
         <Button
           onClick={this.clearForm}
@@ -90,21 +124,22 @@ const AddFormValidation = props => {
   )
 }
 
-// const mapStateToProps = state => {
-//   return {
-//     formValidationData: state.formValidationData
-//   }
-// }
+const mapStateToProps = state => {
+  return {
+    formValidationData: state.formValidationData
+  }
+}
 
-// const mapActionsToProps = dispatch => {
-//   return {
-//     onChange: (field, value) => dispatch(changeFormValidation(field, value))
-//     // ,
-//     // onSubmit: (history, formData) => e => {
-//     //   e.preventDefault()
-//     //   dispatch(someActionCreateor(history, formData))
-//     // }
-//   }
-// }
+const mapActionsToProps = dispatch => {
+  return {
+    onChange: (field, value) => dispatch(changeFormValidation(field, value))
+    // ,
+    // onSubmit: (history, formData) => e => {
+    //   e.preventDefault()
+    //   dispatch(someActionCreateor(history, formData))
+    // }
+  }
+}
 
-export default withStyles(styles)(AddFormValidation)
+const connector = connect(mapStateToProps, mapActionsToProps)
+export default connector(withStyles(styles)(AddFormValidation))

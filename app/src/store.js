@@ -7,6 +7,7 @@ import appData from './reducers/app-data'
 import drawer from './reducers/drawer'
 
 import thunk from 'redux-thunk'
+import formValidationData from './reducers/form-validation'
 
 const store = createStore(
   combineReducers({
@@ -17,7 +18,8 @@ const store = createStore(
     categories,
     drawer,
     currentResource,
-    addCategoryForm
+    addCategoryForm,
+    formValidationData
   }),
 
   applyMiddleware(thunk)
