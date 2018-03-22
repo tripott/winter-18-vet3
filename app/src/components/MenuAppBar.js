@@ -9,7 +9,11 @@ import SearchIcon from 'material-ui-icons/Search'
 import { withStyles } from 'material-ui/styles'
 import { connect } from 'react-redux'
 import { TOGGLE_DRAWER } from '../constants'
+<<<<<<< HEAD
 import { Link } from 'react-router-dom'
+=======
+
+>>>>>>> 71f25666e5834ad34d46a7ff067394a49b8f23e7
 const styles = theme => ({
   root: {
     width: '100%'
@@ -56,6 +60,7 @@ const MenuAppBar = props => {
           <Typography className={classes.flex} variant="title" color="inherit">
             {props.title}
           </Typography>
+<<<<<<< HEAD
           <Link to="/search">
             <IconButton
               className={classes.lastButton}
@@ -65,6 +70,15 @@ const MenuAppBar = props => {
               <SearchIcon />
             </IconButton>
           </Link>
+=======
+          <IconButton
+            className={classes.lastButton}
+            color="contrast"
+            aria-label="Search"
+          >
+            <SearchIcon />
+          </IconButton>
+>>>>>>> 71f25666e5834ad34d46a7ff067394a49b8f23e7
         </Toolbar>
       </AppBar>
     </div>
