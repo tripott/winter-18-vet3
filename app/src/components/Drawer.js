@@ -2,13 +2,14 @@ import React from 'react'
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List'
 import ViewList from 'material-ui-icons/ViewList'
 import { connect } from 'react-redux'
+import Favorite from 'material-ui-icons/Favorite'
 import { Link } from 'react-router-dom'
 import InboxIcon from 'material-ui-icons/Inbox'
 import HomeIcon from 'material-ui-icons/Home'
 import Divider from 'material-ui/Divider'
 import { TOGGLE_DRAWER } from '../constants'
 import { Drawer } from 'material-ui'
-
+import Gavel from 'material-ui-icons/Gavel'
 const linkStyle = {
   textDecoration: 'none',
   color: 'black'
@@ -39,6 +40,22 @@ const sideList = (
             <ViewList />
           </ListItemIcon>
           <ListItemText primary="Categories" />
+        </ListItem>
+      </Link>
+      <Link to="/legal" className="router-link" style={linkStyle}>
+        <ListItem button>
+          <ListItemIcon>
+            <Gavel />
+          </ListItemIcon>
+          <ListItemText primary="Legal" />
+        </ListItem>
+      </Link>
+      <Link to="/memory" className="router-link" style={linkStyle}>
+        <ListItem button>
+          <ListItemIcon>
+            <Favorite />
+          </ListItemIcon>
+          <ListItemText primary="In Memory" />
         </ListItem>
       </Link>
     </List>

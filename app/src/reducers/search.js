@@ -1,7 +1,6 @@
 import { CHANGE_SEARCH_CRITERIA } from '../constants'
 
-// {type: CHANGE_SEARCH_CRITERIA, payload: "Fam"}
-const searchCriteria = (state = '', action) => {
+export const searchCriteria = (state = '', action) => {
   switch (action.type) {
     case CHANGE_SEARCH_CRITERIA:
       return action.payload
@@ -9,5 +8,3 @@ const searchCriteria = (state = '', action) => {
       return state
   }
 }
-
-export default searchCriteria

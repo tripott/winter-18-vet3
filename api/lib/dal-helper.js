@@ -13,17 +13,22 @@ const allDocs = options => {
   return db.allDocs(options).then(result => pluck('doc', result.rows))
 }
 
+const bulkUpdate = docs => db.bulkDocs(docs)
+
 const getDoc = id => db.get(id)
-
+//const updateResourceNull = id => db.put
 const addDoc = doc => db.put(doc)
-
-const deleteDoc = doc => db.get(doc).then(doc => db.remove(doc))
-
+const deleteDoc = id => db.get(id).then(doc => db.remove(doc))
+const updateDoc = doc => {
+  return db.put(doc)
+}
 const dalHelper = {
   allDocs,
   getDoc,
   addDoc,
-  deleteDoc
+  deleteDoc,
+  updateDoc,
+  bulkUpdate
 }
 
 module.exports = dalHelper

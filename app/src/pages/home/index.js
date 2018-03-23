@@ -17,12 +17,20 @@ const Welcome = () => (
     <Typography style={{ padding: '16px' }} variant="display1">
       Welcome to the Veterans Support Network
     </Typography>
-
-    <Link to="/resources">
-      <Button variant="raised" color="primary">
-        Browse Resources
-      </Button>
-    </Link>
+    <div>
+      <Link to="/resources" style={{ textDecoration: 'none' }}>
+        <Button variant="raised" color="primary">
+          Browse Resources
+        </Button>
+      </Link>
+    </div>
+    <div>
+      <Link to="/categories" style={{ textDecoration: 'none' }}>
+        <Button variant="raised" color="primary" style={{ marginTop: '8px' }}>
+          Browse Categories
+        </Button>
+      </Link>
+    </div>
   </center>
 )
 

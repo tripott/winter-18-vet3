@@ -1,4 +1,5 @@
 import React from 'react'
+import { CircularProgress } from 'material-ui/Progress'
 import { connect } from 'react-redux'
 import ResourceListItem from '../../components/ResourceListItem'
 import MenuAppBar from '../../components/MenuAppBar'
@@ -9,6 +10,7 @@ import Typography from 'material-ui/Typography'
 import { withStyles } from 'material-ui/styles'
 import Button from 'material-ui/Button'
 import { Link } from 'react-router-dom'
+import Icon from 'material-ui/Icon'
 import Dialog, {
   DialogActions,
   DialogContent,
@@ -25,6 +27,23 @@ const styles = theme => ({
   }),
   cleaned: {
     textDecoration: 'none'
+  },
+  button: {
+    margin: theme.spacing.unit,
+    position: 'fixed !important',
+    right: '15px !important',
+    bottom: '15px !important',
+    padding: 0
+  },
+  progress: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%'
+  },
+  loading: {
+    position: 'absolute',
+    top: '51.5%',
+    left: '46.5%'
   }
 })
 
@@ -38,7 +57,15 @@ class Resource extends React.Component {
     const props = this.props
     const { classes } = props
     if (props.resource._id !== props.match.params.id) {
-      return <h1>Loading Resource...</h1>
+      return (
+        <div>
+          <div className={classes.loading}>
+            {' '}
+            <h1 className="animated infinite swing">Loading</h1>
+          </div>
+          <CircularProgress className={classes.progress} />
+        </div>
+      )
     }
 
     return (
@@ -63,6 +90,16 @@ class Resource extends React.Component {
               Delete
             </Button>
           </div>
+
+          <Button
+            className={classes.button}
+            variant="fab"
+            style={{ backgroundColor: 'white', color: 'green' }}
+            href={`tel:${props.resource.primaryPhone}`}
+            mini={true}
+          >
+            <Icon>phone</Icon>
+          </Button>
         </div>
         <Dialog
           open={props.resource.confirmDelete}
