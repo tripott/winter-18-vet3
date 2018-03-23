@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { map } from 'ramda'
+import { map, isEmpty } from 'ramda'
 import ResourceListItem from '../../components/ResourceListItem'
 import List from 'material-ui/List'
 import withDrawer from '../../components/Drawer'
@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 import { withStyles } from 'material-ui/styles'
 import AddIcon from 'material-ui-icons/Add'
 import Button from 'material-ui/Button'
-
+import { CircularProgress } from 'material-ui/Progress'
 const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
@@ -19,12 +19,35 @@ const styles = theme => ({
     bottom: '15px',
     padding: 0
   },
-  pageMargin: { marginTop: '56px' }
+  pageMargin: { marginTop: '56px' },
+  progress: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%'
+  },
+  loading: {
+    position: 'absolute',
+    top: '51.5%',
+    left: '46.5%'
+  }
 })
 
 const Resources = props => {
   // props.toggleDrawer()
   const { classes } = props
+
+  if (isEmpty(props.resources)) {
+    return (
+      <div>
+        <MenuAppBar title="Resources" />
+        <div className={classes.loading}>
+          {' '}
+          <h1 className="animated infinite swing">Loading</h1>
+        </div>
+        <CircularProgress className={classes.progress} />
+      </div>
+    )
+  }
   return (
     <div>
       <MenuAppBar title="Resources" />
