@@ -4,17 +4,16 @@ import Input, { InputLabel } from 'material-ui/Input'
 import {
   FormControl,
   FormHelperText,
-  FormGroup,
   FormLabel,
   FormControlLabel
 } from 'material-ui/Form'
 
 import MenuAppBar from '../../components/MenuAppBar'
 import Button from 'material-ui/Button'
-import { is, not } from 'ramda'
 import Switch from 'material-ui/Switch'
 import { connect } from 'react-redux'
 import { changeFormValidation } from '../../action-creators/form-validation'
+import { is, not } from 'ramda'
 
 const styles = theme => ({
   container: {
@@ -35,8 +34,11 @@ const AddFormValidation = props => {
     lastName,
     addressStreet,
     email,
-    isSuperHero
+    isSuperHero,
+    isFormValid
   } = props.formValidationData
+
+  const { errors } = props.formValidationData
 
   return (
     <div style={{ marginTop: '56px' }}>
@@ -46,7 +48,7 @@ const AddFormValidation = props => {
         title="Form Validation Demo"
       />
 
-      <FormControl className={classes.formControl}>
+      <FormControl className={classes.formControl} error={errors.lastName}>
         <InputLabel htmlFor="name-simple">Last Name</InputLabel>
         <Input
           id="name-simple"
@@ -54,13 +56,16 @@ const AddFormValidation = props => {
           onChange={e => props.onChange('lastName', e.target.value)}
         />
         <FormHelperText id="addressStreet-helper-text">
-          Enter your last name
+          {errors.lastName
+            ? 'Required'
+            : lastName ? '' : 'Enter your last name'}
         </FormHelperText>
       </FormControl>
 
       <FormControl
         className={classes.formControl}
         aria-describedby="name-helper-text"
+        error={errors.addressStreet}
       >
         <InputLabel htmlFor="addressStreet-helper">Street</InputLabel>
         <Input
@@ -69,10 +74,12 @@ const AddFormValidation = props => {
           onChange={e => props.onChange('addressStreet', e.target.value)}
         />
         <FormHelperText id="addressStreet-helper-text">
-          Enter your street address
+          {errors.addressStreet
+            ? 'Required'
+            : addressStreet ? '' : 'Enter your street address'}
         </FormHelperText>
       </FormControl>
-      <FormControl className={classes.formControl}>
+      <FormControl className={classes.formControl} error={errors.email}>
         <InputLabel htmlFor="email-disabled">Email</InputLabel>
         <Input
           id="email-disabled"
@@ -80,13 +87,14 @@ const AddFormValidation = props => {
           value={email}
           onChange={e => props.onChange('email', e.target.value)}
         />
-        <FormHelperText>Enter a valid email address</FormHelperText>
+        <FormHelperText>
+          {errors.email ? 'Required' : email ? '' : 'Enter your email address'}
+        </FormHelperText>
       </FormControl>
 
       <div>
-        <FormControl className={classes.formControl}>
+        <FormControl className={classes.formControl} error={errors.isSuperHero}>
           <FormLabel component="legend">Superhero?</FormLabel>
-
           <FormControlLabel
             control={
               <Switch
@@ -97,7 +105,11 @@ const AddFormValidation = props => {
             }
             label=""
           />
-          <FormHelperText>Toggle this if you have superpowers.</FormHelperText>
+          <FormHelperText>
+            {errors.isSuperHero
+              ? 'Required'
+              : isSuperHero ? '' : 'toggle if youre awesome'}
+          </FormHelperText>
         </FormControl>
       </div>
 
@@ -116,6 +128,7 @@ const AddFormValidation = props => {
           variant="raised"
           color="primary"
           className={classes.button}
+          disabled={not(isFormValid)}
         >
           Submit
         </Button>

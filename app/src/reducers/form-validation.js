@@ -5,14 +5,14 @@ import {
 
 import { merge } from 'ramda'
 
-import personValidationErrors from './validations/person'
-import isValid from './validations/is-valid'
+import personValidationErrors from '../validations/person'
+import isValid from '../validations/is-valid'
 
 const defaultState = {
   lastName: '',
   isSuperHero: false,
-  email: 'tom@tacobell.com',
-  addressStreet: '111 Chalupa Circle',
+  email: '',
+  addressStreet: '',
   isFormValid: null,
   errors: {
     lastName: null,
@@ -32,7 +32,10 @@ const initialState = merge(defaultState, {
 export default (state = initialState, action) => {
   switch (action.type) {
     case CHG_VALIDATION_FORM_DATA:
-      return merge(state, action.payload)
+      const newState = merge(state, action.payload)
+      const initialErrors = personValidationErrors(newState)
+      const validForm = isValid(initialErrors)
+      return merge(newState, { errors: initialErrors, isFormValid: validForm })
 
     case CLEAR_VALIDATION_FORM_DATA:
       return {}

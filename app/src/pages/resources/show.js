@@ -13,8 +13,7 @@ import Dialog, {
   DialogActions,
   DialogContent,
   DialogContentText,
-  DialogTitle,
-  withMobileDialog
+  DialogTitle
 } from 'material-ui/Dialog'
 
 const styles = theme => ({
