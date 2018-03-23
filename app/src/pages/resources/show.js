@@ -1,4 +1,5 @@
 import React from 'react'
+import { CircularProgress } from 'material-ui/Progress'
 import { connect } from 'react-redux'
 import ResourceListItem from '../../components/ResourceListItem'
 import MenuAppBar from '../../components/MenuAppBar'
@@ -33,6 +34,16 @@ const styles = theme => ({
     right: '15px !important',
     bottom: '15px !important',
     padding: 0
+  },
+  progress: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%'
+  },
+  loading: {
+    position: 'absolute',
+    top: '51.5%',
+    left: '46.5%'
   }
 })
 
@@ -46,7 +57,15 @@ class Resource extends React.Component {
     const props = this.props
     const { classes } = props
     if (props.resource._id !== props.match.params.id) {
-      return <h1>Loading Resource...</h1>
+      return (
+        <div>
+          <div className={classes.loading}>
+            {' '}
+            <h1 className="animated infinite swing">Loading</h1>
+          </div>
+          <CircularProgress className={classes.progress} />
+        </div>
+      )
     }
 
     return (

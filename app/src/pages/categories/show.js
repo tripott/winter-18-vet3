@@ -1,4 +1,5 @@
 import React from 'react'
+import { CircularProgress } from 'material-ui/Progress'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import MenuAppBar from '../../components/MenuAppBar'
@@ -27,6 +28,16 @@ const styles = theme => ({
   }),
   cleaned: {
     textDecoration: 'none'
+  },
+  progress: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%'
+  },
+  loading: {
+    position: 'absolute',
+    top: '51.5%',
+    left: '46.5%'
   }
 })
 
@@ -38,10 +49,19 @@ class Category extends React.Component {
 
   render() {
     const props = this.props
-    if (props.category._id !== props.match.params.id) {
-      return <h1>Loading Category...</h1>
-    }
     const { classes } = props
+    if (props.category._id !== props.match.params.id) {
+      return (
+        <div>
+          <div className={classes.loading}>
+            {' '}
+            <h1 className="animated infinite swing">Loading</h1>
+          </div>
+          <CircularProgress className={classes.progress} />
+        </div>
+      )
+    }
+
     return (
       <div>
         <div>

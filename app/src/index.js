@@ -12,7 +12,7 @@ import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles'
 import indigo from 'material-ui/colors/indigo'
 import purple from 'material-ui/colors/purple'
 import red from 'material-ui/colors/red'
-
+import 'animate.css'
 const customTheme = createMuiTheme({
   palette: {
     primary: indigo,
