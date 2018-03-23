@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { map } from 'ramda'
+import { map, isEmpty } from 'ramda'
+import { CircularProgress } from 'material-ui/Progress'
 import List from 'material-ui/List'
 import CategoryListItem from '../../components/CategoryListItem'
 import withDrawer from '../../components/Drawer'
@@ -18,11 +19,35 @@ const styles = theme => ({
     right: '15px !important',
     bottom: '15px !important',
     padding: 0
+  },
+  progress: {
+    position: 'fixed',
+    top: '50%',
+    left: '47.5%'
+  },
+  loading: {
+    position: 'fixed',
+    top: '52%',
+    left: '0',
+    width: '100%',
+    textAlign: 'center',
+    animated: 'animated infinite swing'
   }
 })
 
 const Categories = props => {
   const { classes, categories } = props
+  if (isEmpty(props.categories)) {
+    return (
+      <div>
+        <MenuAppBar title="Categories" />
+        <div className={classes.loading}>
+          <h1 className="animated infinite swing">Loading</h1>
+        </div>
+        <CircularProgress className={classes.progress} />
+      </div>
+    )
+  }
   return (
     <div style={{ marginTop: '56px' }}>
       <MenuAppBar title="Categories" />

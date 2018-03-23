@@ -53,6 +53,7 @@ class Category extends React.Component {
     if (props.category._id !== props.match.params.id) {
       return (
         <div>
+          <MenuAppBar {...this.props} showBackArrow={true} title="Category" />
           <div className={classes.loading}>
             {' '}
             <h1 className="animated infinite swing">Loading</h1>
